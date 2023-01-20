@@ -34,7 +34,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "LABMedical",
+      "prefix": "labmedical",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
