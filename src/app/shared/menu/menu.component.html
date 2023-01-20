@@ -1,0 +1,49 @@
+<nav
+  class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-primary text-light"
+>
+  <div class="collapse navbar-collapse show" id="menubar" #menubar>
+    <div class="d-flex flex-column align-items-center gap-1 mt-4 px-4">
+      <img
+        src="assets/images/logo-white.png"
+        width="100px"
+        height="100px"
+        alt="LABMedical Logo"
+      />
+      <h1>LABMedical</h1>
+    </div>
+
+    <ul class="navbar-nav d-flex flex-column gap-4 navbar-nav w-100 mt-4 px-4">
+      <div *ngFor="let category of menuCategories">
+        <span>{{ category.title | titlecase }}</span>
+        <li
+          class="d-flex align-items-center gap-2 ps-2 pe-5 py-2 mt-1 nav-item border border-light border-opacity-50 rounded-3"
+          routerLinkActive="border-4 border-opacity-75"
+          *ngFor="let item of category.items"
+        >
+          <img
+            src="assets/images/{{ item.icon }}.svg"
+            height="32px"
+            width="32px"
+            alt=""
+          />
+          <a class="nav-link text-light" routerLink="{{ item.page }}">{{
+            item.title | uppercase
+          }}</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+  <button
+    type="button"
+    class="navbar-toggler bg-primary"
+    data-bs-toggle="collapse"
+    data-bs-target="#menubar"
+    aria-controls="menubar"
+    aria-expanded="true"
+    #toggleButton
+    (click)="toggleButtonText(toggleButton)"
+  >
+    <span *ngIf="displayButtonText"> Encolher Menu </span>
+    <img src="assets/images/toggle.svg" width="48px" height="48px" alt="" />
+  </button>
+</nav>
