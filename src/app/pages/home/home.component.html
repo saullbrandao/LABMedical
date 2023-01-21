@@ -1,0 +1,78 @@
+<div class="p-4">
+  <section>
+    <h2>Estatísticas do Sistema</h2>
+    <div>
+      <ul class="row row-cols-md-3 g-3 p-0">
+        <li
+          class="col"
+          style="list-style: none"
+          *ngFor="let stat of systemStats"
+        >
+          <div class="card d-flex align-items-center gap-2 p-3 shadow">
+            <div class="d-flex gap-4 align-items-center">
+              <img
+                src="assets/images/{{ stat.icon }}.png"
+                width="84"
+                height="84"
+                alt=""
+              />
+              <span class="fs-1 fw-bold">{{ stat.quantity }}</span>
+            </div>
+            <span class="fw-bold">{{ stat.name | titlecase }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Informações Rápidas de Pacientes</h2>
+    <div class="input-group mb-3">
+      <img
+        class="input-group-text border-secondary"
+        src="assets/images/search.svg"
+      />
+      <input
+        type="text"
+        class="form-control border-secondary"
+        placeholder="Digite o nome do paciente"
+        #searchInput
+        (keyup.enter)="searchPacients(searchInput.value)"
+      />
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="searchPacients(searchInput.value)"
+      >
+        Buscar
+      </button>
+    </div>
+
+    <div
+      class="row row-cols-md-3 g-3 pb-4 overflow-scroll"
+      style="max-height: 50vh"
+    >
+      <div class="col" *ngFor="let pacient of filteredPacients">
+        <div
+          class="card d-flex flex-column align-items-center gap-2 p-3 shadow"
+        >
+          <img
+            src="assets/images/person-circle-outline.svg"
+            width="98"
+            height="98"
+            alt=""
+          />
+          <h5 class="fw-bold">{{ pacient.name }}</h5>
+          <span>{{ pacient.age }} Anos</span>
+          <span>{{ pacient.phone }}</span>
+          <span
+            class="fw-bold"
+            ngClass="{{ pacient.insurance ? 'text-primary' : 'text-warning' }}"
+            >{{ pacient.insurance || "sem plano" | titlecase }}</span
+          >
+          <button class="btn btn-outline-dark">Ver mais</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
