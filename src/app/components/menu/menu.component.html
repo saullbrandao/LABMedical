@@ -16,19 +16,22 @@
       <div *ngFor="let category of menuCategories">
         <span>{{ category.title | titlecase }}</span>
         <li
-          class="d-flex align-items-center gap-2 ps-2 pe-5 py-2 mt-1 nav-item border border-light border-opacity-50 rounded-3"
-          routerLinkActive="border-4 border-opacity-75"
           *ngFor="let item of category.items"
+          routerLinkActive="border-4 border-opacity-75"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <img
-            src="assets/images/{{ item.icon }}.svg"
-            height="32px"
-            width="32px"
-            alt=""
-          />
-          <a class="nav-link text-light" routerLink="{{ item.page }}">{{
-            item.title | uppercase
-          }}</a>
+          <a
+            class="nav-link text-light text-nowrap d-flex align-items-center gap-2 ps-2 pe-5 py-2 mt-1 nav-item border border-light border-opacity-50 rounded-3"
+            routerLink="{{ item.page }}"
+          >
+            <img
+              src="assets/images/{{ item.icon }}.svg"
+              height="32px"
+              width="32px"
+              alt=""
+            />
+            {{ item.title | uppercase }}
+          </a>
         </li>
       </div>
     </ul>

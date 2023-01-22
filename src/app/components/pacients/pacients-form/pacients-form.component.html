@@ -1,0 +1,351 @@
+<section class="p-4">
+  <h2>Preencha os campos para cadastrar</h2>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="px-4 py-3 shadow rounded-3"
+  >
+    <div class="d-flex justify-content-between mb-3">
+      <h3 class="fw-bold">Identificação</h3>
+      <div class="d-flex gap-2">
+        <button
+          class="btn btn-outline-danger px-5 rounded-0"
+          type="button"
+          *ngIf="router.isActive('/pacientes/edit', false)"
+        >
+          Deletar
+        </button>
+        <button
+          class="btn px-5 text-light rounded-0"
+          style="background-color: #003478"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-xl-6">
+        <label class="form-label fw-bold" for="nome">Nome Completo</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('nome')"
+          type="text"
+          id="nome"
+          formControlName="nome"
+        />
+        <span class="invalid-feedback"
+          >Digite um nome válido(Mínimo 8 caracteres)</span
+        >
+      </div>
+      <div class="col-xl-4">
+        <label class="form-label fw-bold" for="genero">Gênero</label>
+        <select
+          class="form-select"
+          id="genero"
+          formControlName="genero"
+          [class.is-invalid]="isInvalid('genero')"
+        >
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+        </select>
+        <span class="invalid-feedback">Selecione uma opção</span>
+      </div>
+      <div class="col-xl-2">
+        <label class="form-label fw-bold" for="dataNascimento"
+          >Data Nascimento</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          mask="d0/M0/0000"
+          [dropSpecialCharacters]="false"
+          [leadZeroDateTime]="true"
+          [class.is-invalid]="isInvalid('dataNascimento')"
+          id="dataNascimento"
+          formControlName="dataNascimento"
+          placeHolder="DD/MM/AAAA"
+        />
+        <span class="invalid-feedback">Digite uma data válida</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="cpf">CPF</label>
+        <input
+          mask="000.000.000-00"
+          [dropSpecialCharacters]="false"
+          class="form-control"
+          type="text"
+          id="cpf"
+          formControlName="cpf"
+          [class.is-invalid]="isInvalid('cpf')"
+        />
+        <span class="invalid-feedback">Digite um cpf válido</span>
+      </div>
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="rg">RG</label>
+        <input
+          class="form-control"
+          type="text"
+          id="rg"
+          formControlName="rg"
+          maxlength="20"
+          [class.is-invalid]="isInvalid('rg')"
+        />
+        <span class="invalid-feedback">Digite um RG válido</span>
+      </div>
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="orgaoExpedidor"
+          >Órgao Expedidor RG</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          id="orgaoExpedidor"
+          formControlName="orgaoExpedidor"
+          [class.is-invalid]="isInvalid('orgaoExpedidor')"
+        />
+        <span class="invalid-feedback">Informe o Órgão Expedidor do RG</span>
+      </div>
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="estadoCivil">Estado Civil</label>
+        <select
+          class="form-select"
+          id="estadoCivil"
+          formControlName="estadoCivil"
+          [class.is-invalid]="isInvalid('estadoCivil')"
+        >
+          <option value="Casado(a)">Casado(a)</option>
+          <option value="Divorciado(a)">Divorciado(a)</option>
+          <option value="Solteiro(a)">Solteiro(a)</option>
+          <option value="Viuvo(a)">Viúvo(a)</option>
+        </select>
+        <span class="invalid-feedback">Selecione um Estado Civil</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="telefone">Telefone</label>
+        <input
+          class="form-control"
+          type="text"
+          id="telefone"
+          formControlName="telefone"
+          mask="(00) 0 0000-0000"
+          [dropSpecialCharacters]="false"
+          [class.is-invalid]="isInvalid('telefone')"
+        />
+        <span class="invalid-feedback">Digite um telefone válido</span>
+      </div>
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="email">E-Mail</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+          [class.is-invalid]="isInvalid('email')"
+        />
+        <span class="invalid-feedback">Digite um email válido</span>
+      </div>
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="naturalidade"
+          >Naturalidade</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          id="naturalidade"
+          formControlName="naturalidade"
+          [class.is-invalid]="isInvalid('naturalidade')"
+        />
+        <span class="invalid-feedback">Campo obrigatório</span>
+      </div>
+      <div class="col-lg-3">
+        <label class="form-label fw-bold" for="contatoEmergencia"
+          >Contato de Emergência</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          id="contatoEmergencia"
+          formControlName="contatoEmergencia"
+          mask="(00) 0 0000-0000"
+          [dropSpecialCharacters]="false"
+          [class.is-invalid]="isInvalid('contatoEmergencia')"
+        />
+        <span class="invalid-feedback">Digite um telefone válido</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-6">
+        <label class="form-label fw-bold" for="alergias">Alergias</label>
+        <textarea
+          class="form-control"
+          style="font-size: 0.8rem"
+          rows="3"
+          type="text"
+          id="alergias"
+          formControlName="alergias"
+        ></textarea>
+      </div>
+      <div class="col-lg-6">
+        <label class="form-label fw-bold" for="cuidadosEspecificos"
+          >Cuidados Específicos</label
+        >
+        <textarea
+          class="form-control"
+          style="font-size: 0.8rem"
+          rows="3"
+          type="text"
+          id="cuidadosEspecificos"
+          formControlName="cuidadosEspecificos"
+        ></textarea>
+      </div>
+    </div>
+
+    <h3 class="mb-3 fw-bold">Convênio</h3>
+    <div class="row mb-3" formGroupName="convenio">
+      <div class="col-lg-4">
+        <label class="form-label fw-bold" for="convenio">Convênio</label>
+        <input
+          class="form-control"
+          type="text"
+          id="convenio"
+          formControlName="nome"
+        />
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label fw-bold" for="numeroCarteira"
+          >Número da Carteira</label
+        >
+        <input
+          class="form-control"
+          type="number"
+          id="numeroCarteira"
+          formControlName="numero"
+        />
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label fw-bold" for="validade">Validade</label>
+        <input
+          class="form-control"
+          mask="d0/M0/0000"
+          [dropSpecialCharacters]="false"
+          [leadZeroDateTime]="true"
+          [class.is-invalid]="isInvalid('convenio.validade')"
+          type="text"
+          id="validade"
+          formControlName="validade"
+          placeHolder="DD/MM/AAAA"
+        />
+        <span class="invalid-feedback">Digite uma data válida</span>
+      </div>
+    </div>
+
+    <h3 class="mb-3 fw-bold">Dados de Endereço</h3>
+    <div formGroupName="endereco">
+      <div class="row mb-3">
+        <div class="col-lg-4">
+          <label class="form-label fw-bold" for="cep">CEP</label>
+          <input
+            class="form-control"
+            type="text"
+            id="cep"
+            formControlName="cep"
+            mask="00000-000"
+            (blur)="getAddressByCep()"
+            [class.is-invalid]="isInvalid('endereco.cep')"
+          />
+          <span class="invalid-feedback">Digite um CEP válido</span>
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label fw-bold" for="cidade">Cidade</label>
+          <input
+            class="form-control"
+            type="text"
+            id="cidade"
+            formControlName="cidade"
+            [class.is-invalid]="isInvalid('endereco.cidade')"
+          />
+          <span class="invalid-feedback">Campo Obrigatório</span>
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label fw-bold" for="estado">Estado</label>
+          <input
+            class="form-control"
+            type="text"
+            id="estado"
+            formControlName="estado"
+            [class.is-invalid]="isInvalid('endereco.estado')"
+          />
+          <span class="invalid-feedback">Campo Obrigatório</span>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-lg-10">
+          <label class="form-label fw-bold" for="logradouro">Logradouro</label>
+          <input
+            class="form-control"
+            type="text"
+            id="logradouro"
+            formControlName="logradouro"
+            [class.is-invalid]="isInvalid('endereco.logradouro')"
+          />
+          <span class="invalid-feedback">Campo Obrigatório</span>
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label fw-bold" for="numero">Número</label>
+          <input
+            class="form-control"
+            type="number"
+            id="numero"
+            formControlName="numero"
+            [class.is-invalid]="isInvalid('endereco.numero')"
+          />
+          <span class="invalid-feedback">Campo Obrigatório</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <label class="form-label fw-bold" for="complemento"
+            >Complemento</label
+          >
+          <input
+            class="form-control"
+            type="text"
+            id="complemento"
+            formControlName="complemento"
+          />
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label fw-bold" for="bairro">Bairro</label>
+          <input
+            class="form-control"
+            type="text"
+            id="bairro"
+            formControlName="bairro"
+            [class.is-invalid]="isInvalid('endereco.bairro')"
+          />
+          <span class="invalid-feedback">Campo Obrigatório</span>
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label fw-bold" for="referencia"
+            >Ponto de Referência</label
+          >
+          <input
+            class="form-control"
+            type="text"
+            id="referencia"
+            formControlName="referencia"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
