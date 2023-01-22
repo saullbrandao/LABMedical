@@ -10,16 +10,9 @@
       <h3 class="fw-bold">Identificação</h3>
       <div class="d-flex gap-2">
         <button
-          class="btn btn-outline-primary px-5 rounded-0"
-          type="button"
-          *ngIf="router.isActive('/paciente', false)"
-        >
-          Editar
-        </button>
-        <button
           class="btn btn-outline-danger px-5 rounded-0"
           type="button"
-          *ngIf="router.isActive('/paciente', false)"
+          *ngIf="router.isActive('/pacientes/edit', false)"
         >
           Deletar
         </button>
@@ -55,8 +48,8 @@
           formControlName="genero"
           [class.is-invalid]="isInvalid('genero')"
         >
-          <option value="masculino">Masculino</option>
-          <option value="feminino">Feminino</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
         </select>
         <span class="invalid-feedback">Selecione uma opção</span>
       </div>
@@ -125,10 +118,10 @@
           formControlName="estadoCivil"
           [class.is-invalid]="isInvalid('estadoCivil')"
         >
-          <option value="casado">Casado(a)</option>
-          <option value="divorciado">Divorciado(a)</option>
-          <option value="solteiro">Solteiro(a)</option>
-          <option value="viuvo">Viúvo(a)</option>
+          <option value="Casado(a)">Casado(a)</option>
+          <option value="Divorciado(a)">Divorciado(a)</option>
+          <option value="Solteiro(a)">Solteiro(a)</option>
+          <option value="Viuvo(a)">Viúvo(a)</option>
         </select>
         <span class="invalid-feedback">Selecione um Estado Civil</span>
       </div>
@@ -181,6 +174,7 @@
           id="contatoEmergencia"
           formControlName="contatoEmergencia"
           mask="(00) 0 0000-0000"
+          [dropSpecialCharacters]="false"
           [class.is-invalid]="isInvalid('contatoEmergencia')"
         />
         <span class="invalid-feedback">Digite um telefone válido</span>

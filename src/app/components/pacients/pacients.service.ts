@@ -12,6 +12,6 @@ export class PacientsService {
   constructor(private http: HttpClient) {}
 
   create(pacient: Pacient) {
-    return this.http.post(this.API_URL, pacient).pipe(take(1));
+    return this.http.post<Pacient>(this.API_URL, pacient).pipe(take(1));
   }
 }

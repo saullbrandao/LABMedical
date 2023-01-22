@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CepService } from 'src/app/shared/services/cep.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { CPF_REGEX, PHONE_REGEX } from 'src/app/shared/utils/constants';
 import { dateValidation } from 'src/app/shared/utils/date-validator';
 import { PacientsService } from '../pacients.service';
@@ -18,7 +19,8 @@ export class PacientsFormComponent {
     private formBuilder: FormBuilder,
     private cepService: CepService,
     private pacientsService: PacientsService,
-    public router: Router
+    public router: Router,
+    private toastService: ToastService
   ) {
     this.form = this.formBuilder.group({
       nome: [
@@ -74,17 +76,18 @@ export class PacientsFormComponent {
   }
 
   onSubmit() {
-    const test = this.form.get('convenio.validade');
-    console.log(test);
-
-    if (this.form.invalid) {
+    if (this.form.valid) {
+      this.pacientsService.create(this.form.value).subscribe({
+        next: (pacient) => {
+          this.toastService.success('Paciente criado com sucesso!');
+          this.router.navigate(['/paciente', pacient.id]);
+        },
+        error: () => this.toastService.error('Erro ao salvar paciente!'),
+      });
+    } else {
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);
         control?.markAllAsTouched();
-      });
-    } else {
-      this.pacientsService.create(this.form.value).subscribe({
-        next: () => alert('Paciente criado com sucesso!'),
       });
     }
   }
