@@ -17,7 +17,7 @@ export class MenuComponent {
     {
       title: 'pacientes',
       items: [
-        { title: 'cadastrar', icon: 'add', page: 'cadastrar-paciente' },
+        { title: 'cadastrar', icon: 'add', page: 'pacientes/novo' },
         { title: 'listar prontuario', icon: 'list', page: 'pacientes' },
       ],
     },
