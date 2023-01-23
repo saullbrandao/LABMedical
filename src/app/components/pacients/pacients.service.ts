@@ -11,6 +11,10 @@ export class PacientsService {
 
   constructor(private http: HttpClient) {}
 
+  getAll() {
+    return this.http.get<Pacient[]>(`${this.API_URL}`);
+  }
+
   create(pacient: Pacient) {
     return this.http.post<Pacient>(this.API_URL, pacient).pipe(take(1));
   }

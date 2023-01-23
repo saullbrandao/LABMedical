@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PacientsService } from 'src/app/components/pacients/pacients.service';
+import { Pacient } from 'src/app/shared/models/pacient';
 
 @Component({
   selector: 'labmedical-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   readonly systemStats = [
     {
       name: 'pacientes',
@@ -24,84 +26,26 @@ export class HomeComponent {
     },
   ];
 
-  pacients = [
-    {
-      id: 1,
-      name: 'Saull Brandão',
-      age: 31,
-      phone: '(99) 9 9999-9999',
-      email: 'test1@test.com',
-      insurance: '',
-    },
-    {
-      id: 2,
-      name: 'Bliss Mongeot',
-      age: 23,
-      phone: '(99) 9 9999-9999',
-      email: 'test2@test.com',
-      insurance: 'unimed',
-    },
-    {
-      id: 3,
-      name: 'Dulcinea Ladel',
-      age: 5,
-      phone: '(99) 9 9999-9999',
-      email: 'test3@test.com',
-      insurance: 'plamev',
-    },
-    {
-      id: 4,
-      name: 'Esme Dowbiggin',
-      age: 49,
-      phone: '(99) 9 9999-9999',
-      email: 'test4@test.com',
-      insurance: 'cauzzo',
-    },
-    {
-      id: 5,
-      name: 'Jesselyn Plackstone',
-      age: 71,
-      phone: '(99) 9 9999-9999',
-      email: 'test5@test.com',
-      insurance: 'sul america',
-    },
-    {
-      id: 6,
-      name: 'Nate Boxe',
-      age: 10,
-      phone: '(99) 9 9999-9999',
-      email: 'test6@test.com',
-      insurance: 'bradesco saúde',
-    },
-    {
-      id: 7,
-      name: 'Donalt Hamblin',
-      age: 35,
-      phone: '(99) 9 9999-9999',
-      email: 'test7@test.com',
-      insurance: 'unimed',
-    },
-    {
-      id: 8,
-      name: 'Victoria Farnorth',
-      age: 55,
-      phone: '(99) 9 9999-9999',
-      email: 'test8@test.com',
-      insurance: 'unimed',
-    },
-  ];
+  pacients: Pacient[] = [];
 
   filteredPacients = this.pacients;
 
+  constructor(private pacientsService: PacientsService) {}
+  ngOnInit(): void {
+    this.pacientsService
+      .getAll()
+      .subscribe((data) => this.pacients.push(...data));
+  }
+
   searchPacients(searchTerm: string) {
     this.filteredPacients = this.pacients.filter((pacient) => {
-      const name = pacient.name.toLowerCase();
+      const name = pacient.nome.toLowerCase();
       const term = searchTerm.toLowerCase();
 
       return (
         name.includes(term) ||
-        pacient.email.includes(term) ||
-        pacient.phone.includes(term)
+        pacient.email?.includes(term) ||
+        pacient.telefone.includes(term)
       );
     });
   }
