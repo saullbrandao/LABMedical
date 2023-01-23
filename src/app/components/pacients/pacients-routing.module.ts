@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 import { PacientResolver } from './pacient.resolver';
 import { PacientsFormComponent } from './pacients-form/pacients-form.component';
 
 const routes: Routes = [
   {
     path: 'novo',
+    component: PacientsFormComponent,
+  },
+  {
+    path: 'prontuarios',
+    component: MedicalRecordsComponent,
+  },
+  {
+    path: 'prontuarios/:id',
     component: PacientsFormComponent,
   },
   {
