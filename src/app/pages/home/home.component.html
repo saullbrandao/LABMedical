@@ -62,13 +62,15 @@
             height="98"
             alt=""
           />
-          <h5 class="fw-bold">{{ pacient.name }}</h5>
-          <span>{{ pacient.age }} Anos</span>
-          <span>{{ pacient.phone }}</span>
+          <h5 class="fw-bold">{{ pacient.nome }}</h5>
+          <span>{{ pacient.dataNascimento | age }} Anos</span>
+          <span>{{ pacient.telefone }}</span>
           <span
             class="fw-bold"
-            ngClass="{{ pacient.insurance ? 'text-primary' : 'text-warning' }}"
-            >{{ pacient.insurance || "sem plano" | titlecase }}</span
+            ngClass="{{
+              pacient.convenio?.nome ? 'text-primary' : 'text-warning'
+            }}"
+            >{{ pacient.convenio?.nome || "sem convênio" | titlecase }}</span
           >
           <a
             class="btn btn-outline-dark"
