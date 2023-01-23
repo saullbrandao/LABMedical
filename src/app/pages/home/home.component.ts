@@ -26,6 +26,7 @@ export class HomeComponent {
 
   pacients = [
     {
+      id: 1,
       name: 'Saull Brandão',
       age: 31,
       phone: '(99) 9 9999-9999',
@@ -33,6 +34,7 @@ export class HomeComponent {
       insurance: '',
     },
     {
+      id: 2,
       name: 'Bliss Mongeot',
       age: 23,
       phone: '(99) 9 9999-9999',
@@ -40,6 +42,7 @@ export class HomeComponent {
       insurance: 'unimed',
     },
     {
+      id: 3,
       name: 'Dulcinea Ladel',
       age: 5,
       phone: '(99) 9 9999-9999',
@@ -47,6 +50,7 @@ export class HomeComponent {
       insurance: 'plamev',
     },
     {
+      id: 4,
       name: 'Esme Dowbiggin',
       age: 49,
       phone: '(99) 9 9999-9999',
@@ -54,6 +58,7 @@ export class HomeComponent {
       insurance: 'cauzzo',
     },
     {
+      id: 5,
       name: 'Jesselyn Plackstone',
       age: 71,
       phone: '(99) 9 9999-9999',
@@ -61,6 +66,7 @@ export class HomeComponent {
       insurance: 'sul america',
     },
     {
+      id: 6,
       name: 'Nate Boxe',
       age: 10,
       phone: '(99) 9 9999-9999',
@@ -68,6 +74,7 @@ export class HomeComponent {
       insurance: 'bradesco saúde',
     },
     {
+      id: 7,
       name: 'Donalt Hamblin',
       age: 35,
       phone: '(99) 9 9999-9999',
@@ -75,6 +82,7 @@ export class HomeComponent {
       insurance: 'unimed',
     },
     {
+      id: 8,
       name: 'Victoria Farnorth',
       age: 55,
       phone: '(99) 9 9999-9999',

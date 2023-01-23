@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CepService } from 'src/app/shared/services/cep.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { CPF_REGEX, PHONE_REGEX } from 'src/app/shared/utils/constants';
@@ -12,7 +12,7 @@ import { PacientsService } from '../pacients.service';
   templateUrl: './pacients-form.component.html',
   styleUrls: ['./pacients-form.component.scss'],
 })
-export class PacientsFormComponent {
+export class PacientsFormComponent implements OnInit {
   form: FormGroup;
 
   constructor(
@@ -20,6 +20,7 @@ export class PacientsFormComponent {
     private cepService: CepService,
     private pacientsService: PacientsService,
     public router: Router,
+    public route: ActivatedRoute,
     private toastService: ToastService
   ) {
     this.form = this.formBuilder.group({
@@ -68,6 +69,14 @@ export class PacientsFormComponent {
         bairro: ['', Validators.required],
         referencia: [''],
       }),
+    });
+  }
+
+  ngOnInit(): void {
+    const pacient = this.route.snapshot.data['pacient'];
+
+    this.form.patchValue({
+      ...pacient,
     });
   }
 
