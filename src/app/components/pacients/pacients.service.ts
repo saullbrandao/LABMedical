@@ -14,4 +14,8 @@ export class PacientsService {
   create(pacient: Pacient) {
     return this.http.post<Pacient>(this.API_URL, pacient).pipe(take(1));
   }
+
+  getById(id: string) {
+    return this.http.get<Pacient>(`${this.API_URL}/${id}`).pipe(take(1));
+  }
 }

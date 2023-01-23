@@ -70,7 +70,11 @@
             ngClass="{{ pacient.insurance ? 'text-primary' : 'text-warning' }}"
             >{{ pacient.insurance || "sem plano" | titlecase }}</span
           >
-          <button class="btn btn-outline-dark">Ver mais</button>
+          <a
+            class="btn btn-outline-dark"
+            routerLink="/pacientes/editar/{{ pacient.id }}"
+            >Ver mais</a
+          >
         </div>
       </div>
     </div>
