@@ -1,0 +1,53 @@
+<div class="p-4">
+  <section>
+    <h2>Utilize a barra de pesquisa para buscar</h2>
+    <div class="input-group mb-3">
+      <img
+        class="input-group-text border-secondary"
+        src="assets/images/search.svg"
+      />
+      <input
+        type="text"
+        class="form-control border-secondary"
+        placeholder="Digite o nome do paciente"
+        #searchInput
+        (keyup.enter)="searchPacients(searchInput.value)"
+      />
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="searchPacients(searchInput.value)"
+      >
+        Buscar
+      </button>
+    </div>
+    <table
+      class="table table-hover align-middle text-center"
+      style="border-collapse: separate; border-spacing: 0 2rem"
+    >
+      <thead>
+        <tr>
+          <th class="fs-4" scope="col">Registro</th>
+          <th class="fs-4" scope="col">Nome do Paciente</th>
+          <th class="fs-4" scope="col">Convênio</th>
+          <th class="fs-4" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="rounded-3 shadow"
+          style="background-color: white; height: 5rem; cursor: pointer"
+          *ngFor="let pacient of filteredPacients"
+          routerLink="{{ pacient.id }}"
+        >
+          <td>{{ pacient.id?.toString()?.padStart(10, "0") }}</td>
+          <td>{{ pacient.nome }}</td>
+          <td>{{ pacient.convenio?.nome || "Sem Plano" }}</td>
+          <td class="text-end">
+            <img src="assets/images/chevron.svg" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
