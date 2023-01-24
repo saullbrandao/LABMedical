@@ -21,7 +21,7 @@ export class MenuComponent {
         {
           title: 'listar prontuario',
           icon: 'list',
-          page: 'pacientes/prontuarios',
+          page: 'pacientes',
         },
       ],
     },

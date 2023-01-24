@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
-import { Pacient } from 'src/app/shared/models/pacient';
-import { DateService } from 'src/app/shared/services/date.service';
-import { ToastService } from 'src/app/shared/services/toast.service';
-import { PacientsService } from '../../pacients/pacients.service';
+import { Patient } from 'src/app/models/pacient';
+import { DateService } from 'src/app/services/date.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { PatientsService } from '../../patients/patients.service';
 import { AppointmentsService } from '../appointments.service';
 
 @Component({
@@ -15,12 +14,12 @@ import { AppointmentsService } from '../appointments.service';
 })
 export class AppointmentsFormComponent {
   form!: FormGroup;
-  patient: Pacient = {} as Pacient;
+  patient: Patient = {} as Patient;
 
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private patientsService: PacientsService,
+    private patientsService: PatientsService,
     private appointmentsService: AppointmentsService,
     private toastService: ToastService,
     private dateService: DateService
