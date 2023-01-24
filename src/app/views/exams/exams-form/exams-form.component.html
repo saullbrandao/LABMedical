@@ -1,0 +1,160 @@
+<section class="p-4">
+  <h2>Encontre o paciente</h2>
+  <div class="input-group mb-3">
+    <img
+      class="input-group-text border-secondary"
+      src="assets/images/search.svg"
+    />
+    <input
+      type="text"
+      class="form-control border-secondary bg-light"
+      placeholder="Digite o nome do paciente"
+      #searchInput
+      (keyup.enter)="searchPatient(searchInput.value)"
+    />
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="searchPatient(searchInput.value)"
+    >
+      Buscar
+    </button>
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="px-4 py-3 shadow rounded-3 bg-white"
+    *ngIf="patient.nome"
+  >
+    <div class="d-flex justify-content-between mb-3">
+      <h3 class="fw-bold">Exame de {{ patient.nome }}</h3>
+      <div class="d-flex gap-2">
+        <button
+          class="btn btn-outline-danger px-5 rounded-0"
+          type="button"
+          *ngIf="router.isActive('/exames/editar', false)"
+        >
+          Deletar
+        </button>
+        <button
+          class="btn px-5 text-light rounded-0"
+          style="background-color: #003478"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-xl-8">
+        <label class="form-label fw-bold" for="nome">Nome do Exame</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('nome')"
+          maxlength="64"
+          type="text"
+          id="nome"
+          formControlName="nome"
+        />
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 8 caracteres)</span
+        >
+      </div>
+      <div class="col-xl-2">
+        <label class="form-label fw-bold" for="data">Data da Consulta</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('data')"
+          type="text"
+          id="data"
+          formControlName="data"
+          mask="d0/M0/0000"
+          [dropSpecialCharacters]="false"
+          [leadZeroDateTime]="true"
+        />
+
+        <span class="invalid-feedback">Inválido</span>
+      </div>
+      <div class="col-xl-2">
+        <label class="form-label fw-bold" for="horario">Hora da Consulta</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('horario')"
+          type="text"
+          id="horario"
+          formControlName="horario"
+          mask="Hh:m0:s0"
+          [dropSpecialCharacters]="false"
+          [leadZeroDateTime]="true"
+        />
+
+        <span class="invalid-feedback">Inválido</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label fw-bold" for="tipo">Tipo do Exame</label>
+        <input
+          class="form-control"
+          id="tipo"
+          type="text"
+          maxlength="32"
+          formControlName="tipo"
+          [class.is-invalid]="isInvalid('tipo')"
+        />
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 4 caracteres)</span
+        >
+      </div>
+      <div class="col">
+        <label class="form-label fw-bold" for="laboratorio">Laboratório</label>
+        <input
+          class="form-control"
+          id="laboratorio"
+          type="text"
+          maxlength="32"
+          formControlName="laboratorio"
+          [class.is-invalid]="isInvalid('laboratorio')"
+        />
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 4 caracteres)</span
+        >
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label fw-bold" for="url"
+          >URL do Documento do Exame</label
+        >
+        <input
+          class="form-control"
+          id="url"
+          type="text"
+          formControlName="url"
+          [class.is-invalid]="isInvalid('url')"
+        />
+        <span class="invalid-feedback">Insira uma URL válida</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label fw-bold" for="resultado"
+          >Resultado do Exame</label
+        >
+        <textarea
+          class="form-control"
+          id="resultado"
+          rows="10"
+          maxlength="1024"
+          formControlName="resultado"
+          [class.is-invalid]="isInvalid('resultado')"
+        ></textarea>
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 16 caracteres)</span
+        >
+      </div>
+    </div>
+  </form>
+</section>

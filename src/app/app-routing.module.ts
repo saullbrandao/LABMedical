@@ -20,6 +20,11 @@ const routes: Routes = [
         (m) => m.AppointmentsModule
       ),
   },
+  {
+    path: 'exames',
+    loadChildren: () =>
+      import('./views/exams/exams.module').then((m) => m.ExamsModule),
+  },
 ];
 
 @NgModule({
