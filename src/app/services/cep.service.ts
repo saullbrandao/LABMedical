@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { CEP_REGEX } from '../utils/constants';
 import { CepAdress } from '../models/cep-address';
+import { CEP_REGEX } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root',

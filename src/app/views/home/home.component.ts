@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PacientsService } from 'src/app/components/pacients/pacients.service';
-import { Pacient } from 'src/app/shared/models/pacient';
+import { Patient } from 'src/app/models/pacient';
+import { PatientsService } from '../patients/patients.service';
 
 @Component({
   selector: 'labmedical-home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'pacientes',
       quantity: 70,
-      icon: 'pacients',
+      icon: 'patients',
     },
     {
       name: 'consultas',
@@ -26,19 +26,19 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  pacients: Pacient[] = [];
+  patients: Patient[] = [];
 
-  filteredPacients = this.pacients;
+  filteredPatients = this.patients;
 
-  constructor(private pacientsService: PacientsService) {}
+  constructor(private patientsService: PatientsService) {}
   ngOnInit(): void {
-    this.pacientsService
+    this.patientsService
       .getAll()
-      .subscribe((data) => this.pacients.push(...data));
+      .subscribe((data) => this.patients.push(...data));
   }
 
-  searchPacients(searchTerm: string) {
-    this.filteredPacients = this.pacients.filter((pacient) => {
+  searchPatients(searchTerm: string) {
+    this.filteredPatients = this.patients.filter((pacient) => {
       const name = pacient.nome.toLowerCase();
       const term = searchTerm.toLowerCase();
 

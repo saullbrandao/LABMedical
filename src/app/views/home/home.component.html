@@ -37,12 +37,12 @@
         class="form-control border-secondary"
         placeholder="Digite o nome do paciente"
         #searchInput
-        (keyup.enter)="searchPacients(searchInput.value)"
+        (keyup.enter)="searchPatients(searchInput.value)"
       />
       <button
         type="button"
         class="btn btn-outline-secondary"
-        (click)="searchPacients(searchInput.value)"
+        (click)="searchPatients(searchInput.value)"
       >
         Buscar
       </button>
@@ -52,7 +52,7 @@
       class="row row-cols-md-3 g-3 pb-4 overflow-scroll"
       style="max-height: 50vh"
     >
-      <div class="col" *ngFor="let pacient of filteredPacients">
+      <div class="col" *ngFor="let pacient of filteredPatients">
         <div
           class="card d-flex flex-column align-items-center gap-2 p-3 shadow"
         >

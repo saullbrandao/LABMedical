@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CepService } from 'src/app/shared/services/cep.service';
-import { ToastService } from 'src/app/shared/services/toast.service';
-import { CPF_REGEX, PHONE_REGEX } from 'src/app/shared/utils/constants';
-import { dateValidation } from 'src/app/shared/utils/date-validator';
-import { PacientsService } from '../pacients.service';
+import { CepService } from 'src/app/services/cep.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
+import { dateValidation } from 'src/app/utils/date-validator';
+import { PatientsService } from '../patients.service';
 
 @Component({
-  selector: 'labmedical-pacients-form',
-  templateUrl: './pacients-form.component.html',
-  styleUrls: ['./pacients-form.component.scss'],
+  selector: 'labmedical-patients-form',
+  templateUrl: './patients-form.component.html',
+  styleUrls: ['./patients-form.component.scss'],
 })
-export class PacientsFormComponent implements OnInit {
+export class PatientsFormComponent implements OnInit {
   form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private cepService: CepService,
-    private pacientsService: PacientsService,
+    private patientsService: PatientsService,
     public router: Router,
     public route: ActivatedRoute,
     private toastService: ToastService
@@ -86,7 +86,7 @@ export class PacientsFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.pacientsService.create(this.form.value).subscribe({
+      this.patientsService.create(this.form.value).subscribe({
         next: (pacient) => {
           this.toastService.success('Paciente criado com sucesso!');
           this.router.navigate(['/paciente', pacient.id]);

@@ -6,21 +6,21 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Pacient } from 'src/app/shared/models/pacient';
-import { PacientsService } from './pacients.service';
+import { Patient } from 'src/app/models/pacient';
+import { PatientsService } from './patients.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PacientResolver implements Resolve<Pacient> {
-  constructor(private pacientsService: PacientsService) {}
+export class PacientResolver implements Resolve<Patient> {
+  constructor(private patientsService: PatientsService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<Pacient> {
+  ): Observable<Patient> {
     if (route.params && route.params['id']) {
-      return this.pacientsService.getById(route.params['id']);
+      return this.patientsService.getById(route.params['id']);
     }
 
     return of({

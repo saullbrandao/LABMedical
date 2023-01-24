@@ -11,12 +11,12 @@
         class="form-control border-secondary"
         placeholder="Digite o nome do paciente"
         #searchInput
-        (keyup.enter)="searchPacients(searchInput.value)"
+        (keyup.enter)="searchPatients(searchInput.value)"
       />
       <button
         type="button"
         class="btn btn-outline-secondary"
-        (click)="searchPacients(searchInput.value)"
+        (click)="searchPatients(searchInput.value)"
       >
         Buscar
       </button>
@@ -37,7 +37,7 @@
         <tr
           class="rounded-3 shadow"
           style="background-color: white; height: 5rem; cursor: pointer"
-          *ngFor="let pacient of filteredPacients"
+          *ngFor="let pacient of filteredPatients"
           routerLink="{{ pacient.id }}"
         >
           <td>{{ pacient.id?.toString()?.padStart(10, "0") }}</td>

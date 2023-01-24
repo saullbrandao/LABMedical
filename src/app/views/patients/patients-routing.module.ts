@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
-import { PacientResolver } from './pacient.resolver';
-import { PacientsFormComponent } from './pacients-form/pacients-form.component';
+import { PacientResolver } from './patient.resolver';
+import { PatientsFormComponent } from './patients-form/patients-form.component';
 
 const routes: Routes = [
   {
     path: 'novo',
-    component: PacientsFormComponent,
+    component: PatientsFormComponent,
   },
   {
-    path: 'prontuarios',
+    path: '',
     component: MedicalRecordsComponent,
   },
   {
-    path: 'prontuarios/:id',
-    component: PacientsFormComponent,
+    path: ':id',
+    component: PatientsFormComponent,
   },
   {
     path: 'editar/:id',
-    component: PacientsFormComponent,
+    component: PatientsFormComponent,
     resolve: { pacient: PacientResolver },
   },
 ];
@@ -28,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PacientsRoutingModule {}
+export class PatientsRoutingModule {}

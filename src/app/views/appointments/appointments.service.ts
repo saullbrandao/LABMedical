@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, switchMap, take } from 'rxjs';
-import { Appointment } from 'src/app/shared/models/appointment';
+import { take } from 'rxjs';
+import { Appointment } from 'src/app/models/appointment';
 
 @Injectable({
   providedIn: 'root',

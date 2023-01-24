@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PacientsRoutingModule } from './pacients-routing.module';
-import { PacientsFormComponent } from './pacients-form/pacients-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
+import { PatientsFormComponent } from './patients-form/patients-form.component';
+import { PatientsRoutingModule } from './patients-routing.module';
 
 @NgModule({
-  declarations: [PacientsFormComponent, MedicalRecordsComponent],
+  declarations: [PatientsFormComponent, MedicalRecordsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PacientsRoutingModule,
+    PatientsRoutingModule,
     NgxMaskDirective,
     NgxMaskPipe,
   ],
   providers: [provideNgxMask()],
 })
-export class PacientsModule {}
+export class PatientsModule {}
