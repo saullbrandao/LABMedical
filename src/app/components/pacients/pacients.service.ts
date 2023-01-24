@@ -22,4 +22,10 @@ export class PacientsService {
   getById(id: string) {
     return this.http.get<Pacient>(`${this.API_URL}/${id}`).pipe(take(1));
   }
+
+  getByName(term: string) {
+    return this.http
+      .get<Pacient[]>(`${this.API_URL}?nome_like=${term}`)
+      .pipe(take(1));
+  }
 }

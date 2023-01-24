@@ -1,0 +1,143 @@
+<section class="p-4">
+  <h2>Encontre o paciente</h2>
+  <div class="input-group mb-3">
+    <img
+      class="input-group-text border-secondary"
+      src="assets/images/search.svg"
+    />
+    <input
+      type="text"
+      class="form-control border-secondary bg-light"
+      placeholder="Digite o nome do paciente"
+      #searchInput
+      (keyup.enter)="searchPatient(searchInput.value)"
+    />
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="searchPatient(searchInput.value)"
+    >
+      Buscar
+    </button>
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="px-4 py-3 shadow rounded-3 bg-white"
+    *ngIf="patient.nome"
+  >
+    <div class="d-flex justify-content-between mb-3">
+      <h3 class="fw-bold">Consulta de {{ patient.nome }}</h3>
+      <div class="d-flex gap-2">
+        <button
+          class="btn btn-outline-danger px-5 rounded-0"
+          type="button"
+          *ngIf="router.isActive('/pacientes/edit', false)"
+        >
+          Deletar
+        </button>
+        <button
+          class="btn px-5 text-light rounded-0"
+          style="background-color: #003478"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-xl-8">
+        <label class="form-label fw-bold" for="motivo"
+          >Motivo da Consulta</label
+        >
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('motivo')"
+          type="text"
+          id="motivo"
+          formControlName="motivo"
+        />
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 8 caracteres)</span
+        >
+      </div>
+      <div class="col-xl-2">
+        <label class="form-label fw-bold" for="data">Data da Consulta</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('data')"
+          type="text"
+          id="data"
+          formControlName="data"
+          mask="d0/M0/0000"
+          [dropSpecialCharacters]="false"
+          [leadZeroDateTime]="true"
+        />
+
+        <span class="invalid-feedback">Inválido</span>
+      </div>
+      <div class="col-xl-2">
+        <label class="form-label fw-bold" for="horario">Hora da Consulta</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('horario')"
+          type="text"
+          id="horario"
+          formControlName="horario"
+          mask="Hh:m0:s0"
+          [dropSpecialCharacters]="false"
+          [leadZeroDateTime]="true"
+        />
+
+        <span class="invalid-feedback">Inválido</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label fw-bold" for="descricao"
+          >Descrição do Problema</label
+        >
+        <textarea
+          class="form-control"
+          id="descricao"
+          rows="8"
+          formControlName="descricao"
+          [class.is-invalid]="isInvalid('descricao')"
+        ></textarea>
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 16 caracteres)</span
+        >
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label fw-bold" for="medicacao"
+          >Medicação Receitada</label
+        >
+        <textarea
+          class="form-control"
+          id="medicacao"
+          formControlName="medicacao"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label fw-bold" for="dosagemEPrecaucoes"
+          >Dosagem e Precauções</label
+        >
+        <textarea
+          class="form-control"
+          id="dosagemEPrecaucoes"
+          formControlName="dosagemEPrecaucoes"
+          [class.is-invalid]="isInvalid('dosagemEPrecaucoes')"
+        ></textarea>
+        <span class="invalid-feedback"
+          >Campo obrigatório(Mínimo 16 caracteres)</span
+        >
+      </div>
+    </div>
+  </form>
+</section>
