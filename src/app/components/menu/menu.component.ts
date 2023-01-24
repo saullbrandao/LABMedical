@@ -33,7 +33,7 @@ export class MenuComponent {
           icon: 'add',
           page: 'consultas/novo',
         },
-        { title: 'cadastrar exame', icon: 'add', page: 'cadastrar-exames' },
+        { title: 'cadastrar exame', icon: 'add', page: 'exames/novo' },
       ],
     },
   ];

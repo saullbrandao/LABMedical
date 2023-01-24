@@ -167,5 +167,18 @@
       "dosagemEPrecaucoes": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, alias!",
       "id": 1
     }
+  ],
+  "exames": [
+    {
+      "pacienteId": 1,
+      "nome": "Lorem Ipsum",
+      "data": "24/01/2023",
+      "horario": "20:18:45",
+      "tipo": "Lorem Ipsum",
+      "laboratorio": "Lorem Ipsum",
+      "url": "",
+      "resultado": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non commodi quos exercitationem! Quod doloribus iste sit. Quia, temporibus beatae ratione alias asperiores cum sit nam molestias, quod officiis sint consequatur cumque vel, similique numquam reprehenderit necessitatibus. Placeat cupiditate assumenda consequatur recusandae laudantium commodi numquam, explicabo aperiam animi possimus atque quo!",
+      "id": 1
+    }
   ]
 }
