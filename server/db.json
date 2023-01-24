@@ -25,7 +25,6 @@
         "logradouro": "Praça da Sé",
         "numero": 123,
         "referencia": "",
-
         "complemento": "lado ímpar",
         "bairro": "Sé",
         "cidade": "São Paulo",
@@ -57,7 +56,6 @@
         "logradouro": "Praça da Sé",
         "numero": 123,
         "referencia": "",
-
         "complemento": "lado ímpar",
         "bairro": "Sé",
         "cidade": "São Paulo",
@@ -89,7 +87,6 @@
         "logradouro": "Praça da Sé",
         "numero": 123,
         "referencia": "",
-
         "complemento": "lado ímpar",
         "bairro": "Sé",
         "cidade": "São Paulo",
@@ -121,7 +118,6 @@
         "logradouro": "Praça da Sé",
         "numero": 123,
         "referencia": "",
-
         "complemento": "lado ímpar",
         "bairro": "Sé",
         "cidade": "São Paulo",
@@ -153,12 +149,23 @@
         "logradouro": "Praça da Sé",
         "numero": 123,
         "referencia": "",
-
         "complemento": "lado ímpar",
         "bairro": "Sé",
         "cidade": "São Paulo",
         "estado": "SP"
       }
+    }
+  ],
+  "consultas": [
+    {
+      "pacienteId": 1,
+      "motivo": "Checkup completo",
+      "data": "24/01/2023",
+      "horario": "13:00:28",
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, alias!",
+      "medicacao": "",
+      "dosagemEPrecaucoes": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, alias!",
+      "id": 1
     }
   ]
 }

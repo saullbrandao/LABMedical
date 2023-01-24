@@ -31,7 +31,7 @@ export class MenuComponent {
         {
           title: 'cadastrar consulta',
           icon: 'add',
-          page: 'cadastrar-consultas',
+          page: 'consultas/novo',
         },
         { title: 'cadastrar exame', icon: 'add', page: 'cadastrar-exames' },
       ],
