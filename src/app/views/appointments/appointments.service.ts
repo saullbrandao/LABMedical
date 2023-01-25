@@ -11,8 +11,20 @@ export class AppointmentsService {
 
   constructor(private http: HttpClient) {}
 
-  create(appointment: Appointment) {
+  private create(appointment: Appointment) {
     return this.http.post<Appointment>(this.API_URL, appointment).pipe(take(1));
+  }
+
+  private update(appointment: Appointment) {
+    return this.http
+      .put<Appointment>(`${this.API_URL}/${appointment.id}`, appointment)
+      .pipe(take(1));
+  }
+
+  save(appointment: Appointment) {
+    if (appointment.id) return this.update(appointment);
+
+    return this.create(appointment);
   }
 
   getById(id: string) {
