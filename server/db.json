@@ -168,14 +168,24 @@
       "id": 1
     },
     {
+      "id": 2,
       "pacienteId": 1,
-      "motivo": "Teste ferfrfr",
+      "motivo": "1231231312",
+      "data": "22/01/2013",
+      "horario": "09:28:17",
+      "descricao": "gre grtghrt rhhrthrhrhrhrth ",
+      "medicacao": "hthrth trthrthrth h",
+      "dosagemEPrecaucoes": "htrhrthrhrhrthrthrth"
+    },
+    {
+      "pacienteId": 1,
+      "motivo": "Teste ferfr",
       "data": "22/01/2013",
       "horario": "09:28:17",
       "descricao": "gre grtghrt rhhrthrhrhrhrth ",
       "medicacao": "hthrth trthrthrth h",
       "dosagemEPrecaucoes": "htrhrthrhrhrthrthrth",
-      "id": 2
+      "id": 3
     }
   ],
   "exames": [

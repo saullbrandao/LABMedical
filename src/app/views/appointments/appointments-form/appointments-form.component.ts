@@ -30,6 +30,7 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
     private dateService: DateService
   ) {
     this.form = this.formBuilder.group({
+      id: [null],
       pacienteId: [null, [Validators.required]],
       motivo: [
         '',
@@ -64,13 +65,15 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const appointment: Appointment = this.route.snapshot.data['appointment'];
 
-    this.patientsSubscription = this.patientsService
-      .getById(appointment.pacienteId)
-      .subscribe((data) => (this.patient = data));
+    if (appointment?.id) {
+      this.patientsSubscription = this.patientsService
+        .getById(appointment.pacienteId)
+        .subscribe((data) => (this.patient = data));
 
-    this.form.patchValue({
-      ...appointment,
-    });
+      this.form.patchValue({
+        ...appointment,
+      });
+    }
   }
 
   ngOnDestroy(): void {
@@ -79,15 +82,20 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    const successMsg = this.form.value.id
+      ? 'Consulta atualizada com sucesso!'
+      : 'Consulta cadastrada com sucesso!';
+    const errorMsg = this.form.value.id
+      ? 'Erro ao atualizar informações da consulta, tente novamente.'
+      : 'Erro ao cadastrar consulta, tente novamente.';
 
     if (this.form.valid) {
-      this.appointmentsService.create(this.form.value).subscribe({
+      this.appointmentsService.save(this.form.value).subscribe({
         next: () => {
-          this.toastService.success('Consulta criada com sucesso!');
-          this.router.navigate(['/']);
+          this.toastService.success(successMsg);
+          this.router.navigate(['/pacientes', this.patient.id]);
         },
-        error: () => this.toastService.error('Erro ao salvar consulta!'),
+        error: () => this.toastService.error(errorMsg),
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {
