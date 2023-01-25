@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Patient } from 'src/app/models/pacient';
+import { Patient } from 'src/app/models/patient';
 import { PatientsService } from '../patients.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class PatientComponent implements OnInit, OnDestroy {
       const id = params['id'];
 
       this.patientSubscription = this.patientsService
-        .getPacientInfo(id)
+        .getPatientInfo(id)
         .subscribe((patient) => {
           patient.consultas?.sort((a, b) => {
             const dateA = new Date(

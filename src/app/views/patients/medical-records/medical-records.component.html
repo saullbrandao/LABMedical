@@ -37,12 +37,12 @@
         <tr
           class="rounded-3 shadow"
           style="background-color: white; height: 5rem; cursor: pointer"
-          *ngFor="let pacient of filteredPatients"
-          routerLink="{{ pacient.id }}"
+          *ngFor="let patient of filteredPatients"
+          routerLink="{{ patient.id }}"
         >
-          <td>{{ pacient.id?.toString()?.padStart(10, "0") }}</td>
-          <td>{{ pacient.nome }}</td>
-          <td>{{ pacient.convenio?.nome || "Sem Plano" }}</td>
+          <td>{{ patient.id?.toString()?.padStart(10, "0") }}</td>
+          <td>{{ patient.nome }}</td>
+          <td>{{ patient.convenio?.nome || "Sem Plano" }}</td>
           <td class="text-end">
             <img src="assets/images/chevron.svg" />
           </td>
