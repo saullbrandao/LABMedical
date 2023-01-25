@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 import { PacientResolver } from './patient.resolver';
+import { PatientComponent } from './patient/patient.component';
 import { PatientsFormComponent } from './patients-form/patients-form.component';
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: PatientsFormComponent,
+    component: PatientComponent,
   },
   {
     path: 'editar/:id',

@@ -1,0 +1,93 @@
+<div class="p-4" *ngIf="patient.nome">
+  <h2>Paciente {{ patient.nome }}</h2>
+  <p>
+    <span class="fw-semibold"> Convênio: </span>
+    {{ patient.convenio?.nome || "Sem Plano" | titlecase }}
+  </p>
+  <p>
+    <span class="fw-semibold"> Contato de Emergência: </span>
+    {{ patient.contatoEmergencia }}
+  </p>
+  <p>
+    <span class="fw-semibold"> Alergias: </span>
+    {{ patient.alergias || "Nenhuma" }}
+  </p>
+  <p>
+    <span class="fw-semibold"> Cuidados Específicos: </span>
+
+    {{ patient.cuidadosEspecificos || "Nenhum" }}
+  </p>
+
+  <section>
+    <h3>Consultas</h3>
+    <ul class="d-flex flex-column gap-4">
+      <li
+        class="card bg-white p-3"
+        *ngFor="let appointment of patient.consultas"
+      >
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title d-flex gap-4">
+            Motivo: {{ appointment.motivo }}
+          </h4>
+          <button
+            class="btn btn-light d-flex justify-content-center align-items-center gap-2"
+            type="button"
+          >
+            <img src="assets/images/edit.png" alt="editar" />
+            EDITAR
+          </button>
+        </div>
+
+        <div class="">
+          <div class="d-flex gap-2">
+            <p class="fw-semibold">Data: {{ appointment.data }}</p>
+            <p class="fw-semibold">Hora: {{ appointment.horario }}</p>
+          </div>
+          <p>
+            Descrição do Problema:
+            {{ appointment.descricao }}
+          </p>
+          <p>Medicação Receitada: {{ appointment.medicacao || "Nenhuma" }}</p>
+          <p>Dosagem e Precauções: {{ appointment.dosagemEPrecaucoes }}</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h3>Exames</h3>
+    <ul class="d-flex flex-column gap-4">
+      <li class="card bg-white p-3" *ngFor="let exam of patient.exames">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title d-flex gap-4">Nome: {{ exam.nome }}</h4>
+          <button
+            class="btn btn-light d-flex justify-content-center align-items-center gap-2"
+            type="button"
+          >
+            <img src="assets/images/edit.png" alt="editar" />
+            EDITAR
+          </button>
+        </div>
+
+        <div class="">
+          <div class="d-flex gap-4">
+            <p class="fw-semibold">Data: {{ exam.data }}</p>
+            <p class="fw-semibold">Hora: {{ exam.horario }}</p>
+            <p class="fw-semibold">Laboratório: {{ exam.laboratorio }}</p>
+          </div>
+          <p>
+            Tipo:
+            {{ exam.tipo }}
+          </p>
+          <p>
+            Resultado:
+            {{ exam.resultado }}
+          </p>
+          <p *ngIf="exam.url">
+            Anexo:
+            {{ exam.url }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
