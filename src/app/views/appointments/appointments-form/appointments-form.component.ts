@@ -105,6 +105,20 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  onDelete() {
+    const id = this.form.get('id')?.value;
+
+    this.appointmentsService.delete(id).subscribe({
+      next: () => {
+        this.toastService.success('Consulta deletada com sucesso!');
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.toastService.error('Erro ao deletar consulta. Tente novamente.');
+      },
+    });
+  }
+
   searchPatient(term: string) {
     this.patientsSearchSubscription = this.patientsService
       .getByName(term)
