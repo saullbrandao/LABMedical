@@ -14,4 +14,8 @@ export class AppointmentsService {
   create(appointment: Appointment) {
     return this.http.post<Appointment>(this.API_URL, appointment).pipe(take(1));
   }
+
+  getById(id: string) {
+    return this.http.get<Appointment>(`${this.API_URL}/${id}`).pipe(take(1));
+  }
 }
