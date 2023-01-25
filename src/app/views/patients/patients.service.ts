@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, take } from 'rxjs';
+import { switchMap, take, throwError } from 'rxjs';
 import { Patient } from 'src/app/models/patient';
 
 @Injectable({
@@ -46,10 +46,20 @@ export class PatientsService {
       .pipe(take(1));
   }
 
-  canDelete(id: string) {
-    this.getPatientInfo(id).pipe(
-      map((data) => {
-        console.log(data);
+  delete(id: string) {
+    return this.getPatientInfo(id).pipe(
+      switchMap((patient) => {
+        // Only delete if patient has no appointments and exams
+        if (patient.consultas?.length === 0 && patient.exames?.length === 0) {
+          return this.http.delete<Patient>(`${this.API_URL}/${id}`);
+        }
+
+        return throwError(
+          () =>
+            new Error(
+              'Erro ao deletar paciente. Paciente tem consultas ou exames cadastrados!'
+            )
+        );
       })
     );
   }

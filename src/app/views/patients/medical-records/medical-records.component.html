@@ -40,7 +40,7 @@
           *ngFor="let patient of filteredPatients"
           routerLink="{{ patient.id }}"
         >
-          <td>{{ patient.id?.toString()?.padStart(10, "0") }}</td>
+          <td>{{ patient.id.padStart(10, "0") }}</td>
           <td>{{ patient.nome }}</td>
           <td>{{ patient.convenio?.nome || "Sem Plano" }}</td>
           <td class="text-end">

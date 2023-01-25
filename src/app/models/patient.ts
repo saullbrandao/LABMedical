@@ -2,7 +2,7 @@ import { Appointment } from './appointment';
 import { Exam } from './exam';
 
 export type Patient = {
-  id?: number;
+  id: string;
   nome: string;
   genero: string;
   dataNascimento: string;
