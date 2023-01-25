@@ -30,4 +30,8 @@ export class ExamsService {
   getById(id: string) {
     return this.http.get<Exam>(`${this.API_URL}/${id}`).pipe(take(1));
   }
+
+  delete(id: number) {
+    return this.http.delete(`${this.API_URL}/${id}`);
+  }
 }
