@@ -14,4 +14,8 @@ export class ExamsService {
   create(exam: Exam) {
     return this.http.post<Exam>(this.API_URL, exam).pipe(take(1));
   }
+
+  getById(id: string) {
+    return this.http.get<Exam>(`${this.API_URL}/${id}`).pipe(take(1));
+  }
 }

@@ -1,3 +1,6 @@
+import { Appointment } from './appointment';
+import { Exam } from './exam';
+
 export type Patient = {
   id?: number;
   nome: string;
@@ -28,4 +31,6 @@ export type Patient = {
     bairro: string;
     referencia?: string;
   };
+  consultas?: Appointment[];
+  exames?: Exam[];
 };

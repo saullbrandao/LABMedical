@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExamResolver } from './exam.resolver';
 import { ExamsFormComponent } from './exams-form/exams-form.component';
 
 const routes: Routes = [
   {
     path: 'novo',
     component: ExamsFormComponent,
+  },
+  {
+    path: 'editar/:id',
+    component: ExamsFormComponent,
+    resolve: { exam: ExamResolver },
   },
   {
     path: '',

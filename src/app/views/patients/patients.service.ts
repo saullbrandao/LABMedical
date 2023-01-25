@@ -28,4 +28,10 @@ export class PatientsService {
       .get<Patient[]>(`${this.API_URL}?nome_like=${term}`)
       .pipe(take(1));
   }
+
+  getPacientInfo(id: string) {
+    return this.http
+      .get<Patient>(`${this.API_URL}/${id}?_embed=exames&_embed=consultas`)
+      .pipe(take(1));
+  }
 }

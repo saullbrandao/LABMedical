@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Exam } from 'src/app/models/exam';
 import { Patient } from 'src/app/models/pacient';
 import { DateService } from 'src/app/services/date.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -13,13 +15,16 @@ import { ExamsService } from '../exams.service';
   templateUrl: './exams-form.component.html',
   styleUrls: ['./exams-form.component.scss'],
 })
-export class ExamsFormComponent {
+export class ExamsFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   patient: Patient = {} as Patient;
+  patientsSubscription: Subscription = new Subscription();
+  patientsSearchSubscription: Subscription = new Subscription();
 
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
+    private route: ActivatedRoute,
     private patientsService: PatientsService,
     private examsService: ExamsService,
     private toastService: ToastService,
@@ -65,6 +70,23 @@ export class ExamsFormComponent {
     });
   }
 
+  ngOnInit(): void {
+    const exam: Exam = this.route.snapshot.data['exam'];
+
+    this.patientsSubscription = this.patientsService
+      .getById(exam.pacienteId)
+      .subscribe((data) => (this.patient = data));
+
+    this.form.patchValue({
+      ...exam,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.patientsSubscription.unsubscribe();
+    this.patientsSearchSubscription.unsubscribe();
+  }
+
   onSubmit() {
     if (this.form.valid) {
       this.examsService.create(this.form.value).subscribe({
@@ -83,12 +105,14 @@ export class ExamsFormComponent {
   }
 
   searchPatient(term: string) {
-    this.patientsService.getByName(term).subscribe((data) => {
-      this.patient = data[0];
-      this.form.patchValue({
-        pacienteId: this.patient.id,
+    this.patientsSearchSubscription = this.patientsService
+      .getByName(term)
+      .subscribe((data) => {
+        this.patient = data[0];
+        this.form.patchValue({
+          pacienteId: this.patient.id,
+        });
       });
-    });
   }
 
   isInvalid(input: string) {

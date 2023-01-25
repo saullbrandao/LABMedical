@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-} from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Patient } from 'src/app/models/pacient';
 import { PatientsService } from './patients.service';
@@ -15,10 +10,7 @@ import { PatientsService } from './patients.service';
 export class PacientResolver implements Resolve<Patient> {
   constructor(private patientsService: PatientsService) {}
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<Patient> {
+  resolve(route: ActivatedRouteSnapshot): Observable<Patient> {
     if (route.params && route.params['id']) {
       return this.patientsService.getById(route.params['id']);
     }

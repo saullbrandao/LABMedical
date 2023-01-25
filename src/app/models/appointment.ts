@@ -1,6 +1,6 @@
 export type Appointment = {
   id: number;
-  pacienteId: number;
+  pacienteId: string;
   motivo: string;
   data: string;
   horario: string;

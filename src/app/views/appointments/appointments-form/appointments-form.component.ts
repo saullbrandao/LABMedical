@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Appointment } from 'src/app/models/appointment';
 import { Patient } from 'src/app/models/pacient';
 import { DateService } from 'src/app/services/date.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -12,13 +14,16 @@ import { AppointmentsService } from '../appointments.service';
   templateUrl: './appointments-form.component.html',
   styleUrls: ['./appointments-form.component.scss'],
 })
-export class AppointmentsFormComponent {
+export class AppointmentsFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   patient: Patient = {} as Patient;
+  patientsSearchSubscription: Subscription = new Subscription();
+  patientsSubscription: Subscription = new Subscription();
 
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
+    private route: ActivatedRoute,
     private patientsService: PatientsService,
     private appointmentsService: AppointmentsService,
     private toastService: ToastService,
@@ -56,6 +61,23 @@ export class AppointmentsFormComponent {
     });
   }
 
+  ngOnInit(): void {
+    const appointment: Appointment = this.route.snapshot.data['appointment'];
+
+    this.patientsSubscription = this.patientsService
+      .getById(appointment.pacienteId)
+      .subscribe((data) => (this.patient = data));
+
+    this.form.patchValue({
+      ...appointment,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.patientsSearchSubscription.unsubscribe();
+    this.patientsSubscription.unsubscribe();
+  }
+
   onSubmit() {
     console.log(this.form.value);
 
@@ -76,12 +98,14 @@ export class AppointmentsFormComponent {
   }
 
   searchPatient(term: string) {
-    this.patientsService.getByName(term).subscribe((data) => {
-      this.patient = data[0];
-      this.form.patchValue({
-        pacienteId: this.patient.id,
+    this.patientsSearchSubscription = this.patientsService
+      .getByName(term)
+      .subscribe((data) => {
+        this.patient = data[0];
+        this.form.patchValue({
+          pacienteId: this.patient.id,
+        });
       });
-    });
   }
 
   isInvalid(input: string) {
