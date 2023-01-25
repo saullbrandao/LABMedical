@@ -40,13 +40,13 @@ export class PatientsService {
       .pipe(take(1));
   }
 
-  getPatientInfo(id: string) {
+  getPatientInfo(id: number) {
     return this.http
       .get<Patient>(`${this.API_URL}/${id}?_embed=exames&_embed=consultas`)
       .pipe(take(1));
   }
 
-  delete(id: string) {
+  delete(id: number) {
     return this.getPatientInfo(id).pipe(
       switchMap((patient) => {
         // Only delete if patient has no appointments and exams

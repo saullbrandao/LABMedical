@@ -24,7 +24,7 @@ export class MedicalRecordsComponent implements OnInit {
       const name = patient.nome.toLowerCase();
       const term = searchTerm.toLowerCase();
 
-      return name.includes(term) || patient.id.includes(term);
+      return name.includes(term) || patient.id?.toString().includes(term);
     });
   }
 }

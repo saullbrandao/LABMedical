@@ -14,7 +14,7 @@ import { PatientsService } from '../patients.service';
   styleUrls: ['./patients-form.component.scss'],
 })
 export class PatientsFormComponent implements OnInit {
-  patientId: string = '';
+  patientId!: number;
   form: FormGroup;
 
   constructor(
@@ -78,10 +78,12 @@ export class PatientsFormComponent implements OnInit {
   ngOnInit(): void {
     const patient: Patient = this.route.snapshot.data['patient'];
 
-    this.patientId = patient?.id;
-    this.form.patchValue({
-      ...patient,
-    });
+    if (patient?.id) {
+      this.patientId = patient.id;
+      this.form.patchValue({
+        ...patient,
+      });
+    }
   }
 
   isInvalid(input: string) {

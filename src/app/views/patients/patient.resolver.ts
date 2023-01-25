@@ -16,7 +16,7 @@ export class PacientResolver implements Resolve<Patient> {
     }
 
     return of({
-      id: '',
+      id: undefined,
       nome: '',
       genero: '',
       dataNascimento: '',
