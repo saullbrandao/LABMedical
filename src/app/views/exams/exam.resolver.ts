@@ -15,7 +15,7 @@ export class ExamResolver implements Resolve<Exam> {
     }
 
     return of({
-      id: 0,
+      id: undefined,
       pacienteId: '',
       nome: '',
       data: '',

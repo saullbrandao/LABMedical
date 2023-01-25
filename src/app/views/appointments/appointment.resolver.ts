@@ -16,7 +16,7 @@ export class AppointmentResolver implements Resolve<Appointment> {
     }
 
     return of({
-      id: 0,
+      id: undefined,
       pacienteId: '',
       motivo: '',
       data: '',
