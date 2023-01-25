@@ -114,6 +114,20 @@ export class ExamsFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  onDelete() {
+    const id = this.form.get('id')?.value;
+
+    this.examsService.delete(id).subscribe({
+      next: () => {
+        this.toastService.success('Exame deletado com sucesso!');
+        this.router.navigate(['/pacientes', this.patient.id]);
+      },
+      error: () => {
+        this.toastService.error('Erro ao deletar exame. Tente novamente.');
+      },
+    });
+  }
+
   searchPatient(term: string) {
     this.patientsSearchSubscription = this.patientsService
       .getByName(term)
