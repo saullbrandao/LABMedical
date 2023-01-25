@@ -13,6 +13,7 @@
           class="btn btn-outline-danger px-5 rounded-0"
           type="button"
           *ngIf="router.isActive('/pacientes/editar', false)"
+          (click)="onDelete()"
         >
           Deletar
         </button>

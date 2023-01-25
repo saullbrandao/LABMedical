@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Patient } from 'src/app/models/patient';
 import { CepService } from 'src/app/services/cep.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
@@ -13,6 +14,7 @@ import { PatientsService } from '../patients.service';
   styleUrls: ['./patients-form.component.scss'],
 })
 export class PatientsFormComponent implements OnInit {
+  patientId: string = '';
   form: FormGroup;
 
   constructor(
@@ -74,8 +76,9 @@ export class PatientsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const patient = this.route.snapshot.data['patient'];
+    const patient: Patient = this.route.snapshot.data['patient'];
 
+    this.patientId = patient?.id;
     this.form.patchValue({
       ...patient,
     });
@@ -107,6 +110,18 @@ export class PatientsFormComponent implements OnInit {
         control?.markAllAsTouched();
       });
     }
+  }
+
+  onDelete() {
+    this.patientsService.delete(this.patientId).subscribe({
+      next: () => {
+        this.toastService.success('Paciente deletado com sucesso!');
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        this.toastService.error(error.message);
+      },
+    });
   }
 
   getAddressByCep() {
