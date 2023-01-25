@@ -11,8 +11,20 @@ export class ExamsService {
 
   constructor(private http: HttpClient) {}
 
-  create(exam: Exam) {
+  private create(exam: Exam) {
     return this.http.post<Exam>(this.API_URL, exam).pipe(take(1));
+  }
+
+  private update(exam: Exam) {
+    return this.http
+      .put<Exam>(`${this.API_URL}/${exam.id}`, exam)
+      .pipe(take(1));
+  }
+
+  save(exam: Exam) {
+    if (exam.id) return this.update(exam);
+
+    return this.create(exam);
   }
 
   getById(id: string) {

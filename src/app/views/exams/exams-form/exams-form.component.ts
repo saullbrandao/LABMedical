@@ -31,6 +31,7 @@ export class ExamsFormComponent implements OnInit, OnDestroy {
     private dateService: DateService
   ) {
     this.form = this.formBuilder.group({
+      id: [null],
       pacienteId: [null, [Validators.required]],
       nome: [
         '',
@@ -73,13 +74,15 @@ export class ExamsFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const exam: Exam = this.route.snapshot.data['exam'];
 
-    this.patientsSubscription = this.patientsService
-      .getById(exam.pacienteId)
-      .subscribe((data) => (this.patient = data));
+    if (exam?.id) {
+      this.patientsSubscription = this.patientsService
+        .getById(exam.pacienteId)
+        .subscribe((data) => (this.patient = data));
 
-    this.form.patchValue({
-      ...exam,
-    });
+      this.form.patchValue({
+        ...exam,
+      });
+    }
   }
 
   ngOnDestroy(): void {
@@ -88,13 +91,20 @@ export class ExamsFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    const successMsg = this.form.value.id
+      ? 'Exame atualizado com sucesso!'
+      : 'Exame cadastrado com sucesso!';
+    const errorMsg = this.form.value.id
+      ? 'Erro ao atualizar informações do exame, tente novamente.'
+      : 'Erro ao cadastrar exame, tente novamente.';
+
     if (this.form.valid) {
-      this.examsService.create(this.form.value).subscribe({
+      this.examsService.save(this.form.value).subscribe({
         next: () => {
-          this.toastService.success('Exame criado com sucesso!');
-          this.router.navigate(['/']);
+          this.toastService.success(successMsg);
+          this.router.navigate(['/pacientes', this.patient.id]);
         },
-        error: () => this.toastService.error('Erro ao salvar exame!'),
+        error: () => this.toastService.error(errorMsg),
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {

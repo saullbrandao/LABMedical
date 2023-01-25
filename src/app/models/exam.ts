@@ -1,5 +1,5 @@
 export type Exam = {
-  id: number;
+  id?: number;
   pacienteId: string;
   nome: string;
   data: string;
