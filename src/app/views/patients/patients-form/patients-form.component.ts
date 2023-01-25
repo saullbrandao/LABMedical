@@ -24,6 +24,7 @@ export class PatientsFormComponent implements OnInit {
     private toastService: ToastService
   ) {
     this.form = this.formBuilder.group({
+      id: [null],
       nome: [
         '',
         [
@@ -73,10 +74,10 @@ export class PatientsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const pacient = this.route.snapshot.data['pacient'];
+    const patient = this.route.snapshot.data['patient'];
 
     this.form.patchValue({
-      ...pacient,
+      ...patient,
     });
   }
 
@@ -85,13 +86,20 @@ export class PatientsFormComponent implements OnInit {
   }
 
   onSubmit() {
+    const successMsg = this.form.value.id
+      ? 'Paciente atualizado com sucesso!'
+      : 'Paciente cadastrado com sucesso!';
+    const errorMsg = this.form.value.id
+      ? 'Erro ao atualizar informações do paciente, tente novamente.'
+      : 'Erro ao cadastrar paciente, tente novamente.';
+
     if (this.form.valid) {
-      this.patientsService.create(this.form.value).subscribe({
-        next: (pacient) => {
-          this.toastService.success('Paciente criado com sucesso!');
-          this.router.navigate(['/paciente', pacient.id]);
+      this.patientsService.save(this.form.value).subscribe({
+        next: (patient) => {
+          this.toastService.success(successMsg);
+          this.router.navigate(['/pacientes', patient.id]);
         },
-        error: () => this.toastService.error('Erro ao salvar paciente!'),
+        error: () => this.toastService.error(errorMsg),
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {

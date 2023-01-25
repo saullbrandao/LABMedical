@@ -52,7 +52,7 @@
       class="row row-cols-md-3 g-3 pb-4 overflow-scroll"
       style="max-height: 50vh"
     >
-      <div class="col" *ngFor="let pacient of filteredPatients">
+      <div class="col" *ngFor="let patient of filteredPatients">
         <div
           class="card d-flex flex-column align-items-center gap-2 p-3 shadow"
         >
@@ -62,19 +62,19 @@
             height="98"
             alt=""
           />
-          <h5 class="fw-bold">{{ pacient.nome }}</h5>
-          <span>{{ pacient.dataNascimento | age }} Anos</span>
-          <span>{{ pacient.telefone }}</span>
+          <h5 class="fw-bold">{{ patient.nome }}</h5>
+          <span>{{ patient.dataNascimento | age }} Anos</span>
+          <span>{{ patient.telefone }}</span>
           <span
             class="fw-bold"
             ngClass="{{
-              pacient.convenio?.nome ? 'text-primary' : 'text-warning'
+              patient.convenio?.nome ? 'text-primary' : 'text-warning'
             }}"
-            >{{ pacient.convenio?.nome || "sem convênio" | titlecase }}</span
+            >{{ patient.convenio?.nome || "sem convênio" | titlecase }}</span
           >
           <a
             class="btn btn-outline-dark"
-            routerLink="/pacientes/editar/{{ pacient.id }}"
+            routerLink="/pacientes/editar/{{ patient.id }}"
             >Ver mais</a
           >
         </div>

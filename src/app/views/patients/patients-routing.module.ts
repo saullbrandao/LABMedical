@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'editar/:id',
     component: PatientsFormComponent,
-    resolve: { pacient: PacientResolver },
+    resolve: { patient: PacientResolver },
   },
 ];
 

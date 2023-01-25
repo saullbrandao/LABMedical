@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Patient } from 'src/app/models/pacient';
+import { Patient } from 'src/app/models/patient';
 import { PatientsService } from '../patients.service';
 
 @Component({
@@ -20,11 +20,11 @@ export class MedicalRecordsComponent implements OnInit {
   }
 
   searchPatients(searchTerm: string) {
-    this.filteredPatients = this.patients.filter((pacient) => {
-      const name = pacient.nome.toLowerCase();
+    this.filteredPatients = this.patients.filter((patient) => {
+      const name = patient.nome.toLowerCase();
       const term = searchTerm.toLowerCase();
 
-      return name.includes(term) || pacient.id?.toString().includes(term);
+      return name.includes(term) || patient.id?.toString().includes(term);
     });
   }
 }

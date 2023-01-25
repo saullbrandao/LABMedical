@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Appointment } from 'src/app/models/appointment';
-import { Patient } from 'src/app/models/pacient';
+import { Patient } from 'src/app/models/patient';
 import { DateService } from 'src/app/services/date.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { PatientsService } from '../../patients/patients.service';
