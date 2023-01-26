@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'labmedical-menu',
@@ -39,6 +40,17 @@ export class MenuComponent {
   ];
 
   displayButtonText: boolean = true;
+
+  constructor(private router: Router) {}
+
+  shouldDisplay() {
+    return !this.router.isActive('/login', {
+      paths: 'exact',
+      queryParams: 'exact',
+      fragment: 'ignored',
+      matrixParams: 'ignored',
+    });
+  }
 
   toggleButtonText(toggleButton: HTMLElement) {
     this.displayButtonText = !toggleButton.classList.contains('collapsed');

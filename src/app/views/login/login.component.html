@@ -1,0 +1,73 @@
+<div class="d-flex min-vw-100 min-vh-100 bg-white">
+  <div
+    class="d-none d-xl-flex col-7 flex-column justify-content-center align-items-center position-relative"
+  >
+    <img src="assets/images/medical-record.png" alt="" />
+    <img
+      class="position-absolute bottom-0 end-0 p-5"
+      src="assets/images/lab365-logo.png"
+      alt=""
+    />
+  </div>
+  <div
+    class="vr opacity-100"
+    style="width: 0.4rem; background-color: #003478"
+  ></div>
+  <div class="vstack gap-0 col-5">
+    <div class="hstack justify-content-end p-5 gap-4">
+      <span class="fw-semibold">Não possui uma conta?</span>
+      <button class="btn btn-outline-primary px-5 fw-semibold" type="button">
+        Criar Conta
+      </button>
+    </div>
+    <form
+      [formGroup]="form"
+      (submit)="onSubmit()"
+      class="vstack justify-content-center align-self-center gap-4 w-75"
+    >
+      <h1 class="mb-5 fw-bold">Login</h1>
+      <div class="">
+        <label class="form-label fw-semibold" for="email">E-Mail</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+          [class.is-invalid]="isInvalid('email')"
+        />
+        <span class="invalid-feedback">Digite um email válido</span>
+      </div>
+      <div class="">
+        <label class="form-label fw-semibold" for="password">Senha</label>
+        <input
+          class="form-control"
+          type="password"
+          id="password"
+          formControlName="password"
+          [class.is-invalid]="isInvalid('password')"
+        />
+        <span class="invalid-feedback"
+          >Digite uma senha válida(Mínimo 6 caracteres)</span
+        >
+      </div>
+
+      <button
+        class="btn btn-hover text-light fw-semibold"
+        style="background-color: #003478"
+        type="submit"
+      >
+        Entrar
+      </button>
+      <a
+        class="text-center text-decoration-none"
+        href=""
+        (click)="resetPassword(); (false)"
+        >Esqueceu sua senha?</a
+      >
+    </form>
+
+    <div class="vstack align-self-end justify-content-end p-5">
+      <img src="assets/images/labmedical-logo.png" alt="" />
+    </div>
+  </div>
+</div>

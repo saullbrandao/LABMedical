@@ -1,0 +1,5 @@
+{
+  "/pacientes*": "/660/pacientes$1",
+  "/consultas*": "/660/consultas$1",
+  "/exames*": "/660/exames$1"
+}
