@@ -203,13 +203,21 @@
     {
       "id": 2,
       "pacienteId": 1,
-      "nome": "fgergegger",
+      "nome": "abcdefgh",
       "data": "25/01/2023",
       "horario": "20:46:55",
       "tipo": "gergergergeg",
       "laboratorio": "gergergerge",
       "url": "",
       "resultado": "gergerger gergergergerergergegergergerge"
+    }
+  ],
+  "users": [
+    {
+      "email": "test@test",
+      "password": "$2a$10$ImLhcBv0899moln/SYr21OMy8V/NWF72pzKpdFmfu0fS4KBBwHjIe",
+      "name": "Test Name",
+      "id": 1
     }
   ]
 }

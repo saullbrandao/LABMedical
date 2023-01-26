@@ -1,5 +1,6 @@
 <nav
   class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-primary text-light"
+  *ngIf="shouldDisplay()"
 >
   <div class="collapse navbar-collapse show" id="menubar" #menubar>
     <div class="d-flex flex-column align-items-center gap-1 mt-4 px-4">

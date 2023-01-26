@@ -14,4 +14,8 @@ export class ToastService {
   error(message: string) {
     this.toast.error(message, { dismissible: true });
   }
+
+  info(message: string) {
+    this.toast.info(message, { dismissible: true });
+  }
 }
