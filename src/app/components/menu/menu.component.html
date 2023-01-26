@@ -18,12 +18,13 @@
         <span>{{ category.title | titlecase }}</span>
         <li
           *ngFor="let item of category.items"
-          routerLinkActive="border-4 border-opacity-75"
+          [routerLinkActive]="item.page ? 'border-4 border-opacity-75' : ''"
           [routerLinkActiveOptions]="{ exact: true }"
         >
           <a
             class="nav-link text-light text-nowrap d-flex align-items-center gap-2 ps-2 pe-5 py-2 mt-1 nav-item border border-light border-opacity-50 rounded-3"
             routerLink="{{ item.page }}"
+            (click)="item?.click()"
           >
             <img
               src="assets/images/{{ item.icon }}.svg"

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'labmedical-menu',
@@ -12,7 +13,11 @@ export class MenuComponent {
       title: 'geral',
       items: [
         { title: 'início', icon: 'list', page: '/' },
-        { title: 'sair', icon: 'logout', page: '/logout' },
+        {
+          title: 'sair',
+          icon: 'logout',
+          click: () => this.logout(),
+        },
       ],
     },
     {
@@ -41,7 +46,7 @@ export class MenuComponent {
 
   displayButtonText: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   shouldDisplay() {
     return !this.router.isActive('/login', {
@@ -54,5 +59,9 @@ export class MenuComponent {
 
   toggleButtonText(toggleButton: HTMLElement) {
     this.displayButtonText = !toggleButton.classList.contains('collapsed');
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
