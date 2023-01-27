@@ -1,0 +1,99 @@
+<div
+  class="modal fade"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="registerModalLabel"
+  aria-hidden="true"
+  #registerModal
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="registerModalLabel">
+          Cadastro de Usuário
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          [formGroup]="registerForm"
+          (submit)="onSubmit()"
+          class="vstack gap-3"
+        >
+          <div>
+            <label class="form-label fw-semibold" for="registerName"
+              >Nome*</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="registerName"
+              formControlName="name"
+              placeholder="John Doe"
+              [class.is-invalid]="isInvalid('name')"
+            />
+            <span class="invalid-feedback"
+              >Campo obrigatório. Mínimo 8 caracteres.</span
+            >
+          </div>
+          <div>
+            <label class="form-label fw-semibold" for="registerName"
+              >E-Mail*</label
+            >
+            <input
+              class="form-control"
+              type="email"
+              id="registerEmail"
+              formControlName="email"
+              placeholder="john@doe.com"
+              [class.is-invalid]="isInvalid('email')"
+            />
+            <span class="invalid-feedback">Digite um email válido.</span>
+          </div>
+          <div>
+            <label class="form-label fw-semibold" for="registerPassword"
+              >Senha*</label
+            >
+            <input
+              class="form-control"
+              type="password"
+              id="registerPassword"
+              formControlName="password"
+              placeholder="Mínimo 8 caracteres"
+              [class.is-invalid]="isInvalid('password')"
+            />
+            <span class="invalid-feedback"
+              >Digite uma senha válida(Mínimo 8 caracteres).</span
+            >
+          </div>
+          <div>
+            <label class="form-label fw-semibold" for="confirmPassword"
+              >Confirmar Senha*</label
+            >
+            <input
+              class="form-control"
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              placeholder="Repita a mesma senha"
+              [class.is-invalid]="isInvalid('confirmPassword')"
+            />
+            <span class="invalid-feedback">As senhas não são iguais</span>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-hover text-light fw-semibold align-self-end"
+            style="background-color: #003478"
+          >
+            Cadastrar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

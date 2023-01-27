@@ -5,7 +5,7 @@ import { Patient } from 'src/app/models/patient';
 import { CepService } from 'src/app/services/cep.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
-import { dateValidation } from 'src/app/utils/date-validator';
+import { dateValidator } from 'src/app/utils/date-validator';
 import { PatientsService } from '../patients.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class PatientsFormComponent implements OnInit {
         ],
       ],
       genero: ['', Validators.required],
-      dataNascimento: ['', [Validators.required, dateValidation('past')]],
+      dataNascimento: ['', [Validators.required, dateValidator('past')]],
       cpf: ['', [Validators.required, Validators.pattern(CPF_REGEX)]],
       rg: ['', [Validators.required, Validators.maxLength(20)]],
       orgaoExpedidor: ['', Validators.required],
@@ -60,7 +60,7 @@ export class PatientsFormComponent implements OnInit {
       convenio: this.formBuilder.group({
         nome: [''],
         numero: [''],
-        validade: ['', dateValidation('future')],
+        validade: ['', dateValidator('future')],
       }),
       endereco: this.formBuilder.group({
         cep: ['', Validators.required],

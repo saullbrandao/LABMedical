@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export function dateValidation(param: 'past' | 'future'): ValidatorFn {
+export function dateValidator(param: 'past' | 'future'): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const currentDate = new Date();
     const informedDate = new Date(control.value.split('/').reverse().join('/'));
