@@ -11,6 +11,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LoginComponent } from './views/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './utils/token.interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TokenInterceptor } from './utils/token.interceptor';
     HomeComponent,
     AgePipe,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

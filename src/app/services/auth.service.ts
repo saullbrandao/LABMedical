@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { switchMap } from 'rxjs';
 import { ToastService } from './toast.service';
 
 type Token = {
@@ -12,11 +11,17 @@ type Token = {
   };
 };
 
+type RegisterData = {
+  name: string;
+  email: string;
+  password: string;
+};
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  readonly API_URL = 'http://localhost:3000/login';
+  readonly API_URL = 'http://localhost:3000';
 
   constructor(
     private http: HttpClient,
@@ -25,19 +30,25 @@ export class AuthService {
   ) {}
 
   login(email: string, password: string) {
-    this.http.post<Token>(this.API_URL, { email, password }).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', JSON.stringify(res));
-        this.router.navigate(['/']);
-      },
-      error: () =>
-        this.toastService.error('Erro ao fazer login. Tente novamente'),
-    });
+    this.http
+      .post<Token>(`${this.API_URL}/login`, { email, password })
+      .subscribe({
+        next: (res) => {
+          localStorage.setItem('token', JSON.stringify(res));
+          this.router.navigate(['/']);
+        },
+        error: () =>
+          this.toastService.error('Erro ao fazer login. Tente novamente.'),
+      });
   }
 
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  register(registerData: RegisterData) {
+    return this.http.post<Token>(`${this.API_URL}/register`, registerData);
   }
 
   isLoggedIn() {
