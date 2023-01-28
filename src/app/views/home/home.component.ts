@@ -1,5 +1,8 @@
+import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient';
+import { AppointmentsService } from '../appointments/appointments.service';
+import { ExamsService } from '../exams/exams.service';
 import { PatientsService } from '../patients/patients.service';
 
 @Component({
@@ -8,33 +11,44 @@ import { PatientsService } from '../patients/patients.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  readonly systemStats = [
-    {
-      name: 'pacientes',
-      quantity: 70,
+  systemStats = {
+    pacientes: {
+      quantity: 0,
       icon: 'patients',
     },
-    {
-      name: 'consultas',
-      quantity: 104,
+    consultas: {
+      quantity: 0,
       icon: 'medical-appointment',
     },
-    {
-      name: 'exames',
-      quantity: 102,
+    exames: {
+      quantity: 0,
       icon: 'medical-report',
     },
-  ];
+  };
 
   patients: Patient[] = [];
 
   filteredPatients = this.patients;
 
-  constructor(private patientsService: PatientsService) {}
+  constructor(
+    private patientsService: PatientsService,
+    private appointmentsService: AppointmentsService,
+    private examsService: ExamsService
+  ) {}
+
   ngOnInit(): void {
-    this.patientsService
-      .getAll()
-      .subscribe((data) => this.patients.push(...data));
+    this.patientsService.getAll().subscribe((patients) => {
+      this.systemStats.pacientes.quantity = patients.length;
+      this.patients.push(...patients);
+    });
+
+    this.appointmentsService.getAll().subscribe((appointments) => {
+      this.systemStats.consultas.quantity = appointments.length;
+    });
+
+    this.examsService.getAll().subscribe((exams) => {
+      this.systemStats.exames.quantity = exams.length;
+    });
   }
 
   searchPatients(searchTerm: string) {
@@ -49,4 +63,8 @@ export class HomeComponent implements OnInit {
       );
     });
   }
+
+  keepOrder = (a: any, b: any) => {
+    return a;
+  };
 }

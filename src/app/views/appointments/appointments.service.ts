@@ -21,6 +21,10 @@ export class AppointmentsService {
       .pipe(take(1));
   }
 
+  getAll() {
+    return this.http.get<Appointment[]>(`${this.API_URL}`);
+  }
+
   save(appointment: Appointment) {
     if (appointment.id) return this.update(appointment);
 

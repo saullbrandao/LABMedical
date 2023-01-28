@@ -6,19 +6,19 @@
         <li
           class="col"
           style="list-style: none"
-          *ngFor="let stat of systemStats"
+          *ngFor="let stat of systemStats | keyvalue : keepOrder"
         >
           <div class="card d-flex align-items-center gap-2 p-3 shadow">
             <div class="d-flex gap-4 align-items-center">
               <img
-                src="assets/images/{{ stat.icon }}.png"
+                src="assets/images/{{ stat.value.icon }}.png"
                 width="84"
                 height="84"
                 alt=""
               />
-              <span class="fs-1 fw-bold">{{ stat.quantity }}</span>
+              <span class="fs-1 fw-bold">{{ stat.value.quantity }}</span>
             </div>
-            <span class="fw-bold">{{ stat.name | titlecase }}</span>
+            <span class="fw-bold">{{ stat.key | titlecase }}</span>
           </div>
         </li>
       </ul>
