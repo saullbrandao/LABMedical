@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,14 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: '404',
+    component: PageNotFoundComponent,
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 
