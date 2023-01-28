@@ -21,6 +21,10 @@ export class ExamsService {
       .pipe(take(1));
   }
 
+  getAll() {
+    return this.http.get<Exam[]>(`${this.API_URL}`);
+  }
+
   save(exam: Exam) {
     if (exam.id) return this.update(exam);
 
