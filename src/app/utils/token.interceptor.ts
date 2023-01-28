@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -22,8 +22,17 @@ export class TokenInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${this.authService.getToken()?.accessToken}`,
         },
       });
-      return next.handle(newRequest);
+      return next.handle(newRequest).pipe(
+        catchError((error) => {
+          if (error.status === 401) {
+            this.authService.logout();
+          }
+
+          return of(error);
+        })
+      );
     }
+
     return next.handle(request);
   }
 }
