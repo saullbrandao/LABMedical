@@ -12,6 +12,8 @@ import { LoginComponent } from './views/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { HttpErrorInterceptor } from './utils/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
     AgePipe,
     LoginComponent,
     RegisterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,11 @@ import { RegisterComponent } from './components/register/register.component';
     ReactiveFormsModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
