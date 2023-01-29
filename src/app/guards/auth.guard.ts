@@ -40,6 +40,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     | UrlTree {
     this.handleUnauthenticatedUser();
 
+    if (state.url === '/login') {
+      this.router.navigate(['/']);
+    }
+
     return true;
   }
 
