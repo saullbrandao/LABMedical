@@ -11,6 +11,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./views/patients/patients.module').then((m) => m.PatientsModule),
     canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'consultas',
@@ -19,12 +20,14 @@ const routes: Routes = [
         (m) => m.AppointmentsModule
       ),
     canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'exames',
     loadChildren: () =>
       import('./views/exams/exams.module').then((m) => m.ExamsModule),
     canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'login',
