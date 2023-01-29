@@ -1,5 +1,5 @@
 <nav
-  class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-primary text-light"
+  class="position-sticky top-0 d-flex flex-column align-items-center justify-content-center min-vh-100 bg-primary text-white"
   *ngIf="shouldDisplay()"
 >
   <div class="collapse navbar-collapse show" id="menubar" #menubar>
@@ -16,15 +16,13 @@
     <ul class="navbar-nav d-flex flex-column gap-4 navbar-nav w-100 mt-4 px-4">
       <div *ngFor="let category of menuCategories">
         <span>{{ category.title | titlecase }}</span>
-        <li
-          *ngFor="let item of category.items"
-          [routerLinkActive]="item.page ? 'border-4 border-opacity-75' : ''"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <li *ngFor="let item of category.items">
           <a
-            class="nav-link text-light text-nowrap d-flex align-items-center gap-2 ps-2 pe-5 py-2 mt-1 nav-item border border-light border-opacity-50 rounded-3"
+            class="nav-link text-nowrap d-flex align-items-center gap-2 ps-2 pe-5 py-2 mt-1 nav-item border border-3 rounded-3"
             routerLink="{{ item.page }}"
-            (click)="item?.click()"
+            [routerLinkActive]="item.page ? 'border-warning ' : ''"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="item.click && item.click()"
           >
             <img
               src="assets/images/{{ item.icon }}.svg"
@@ -40,7 +38,7 @@
   </div>
   <button
     type="button"
-    class="navbar-toggler bg-primary"
+    class="navbar-toggler"
     data-bs-toggle="collapse"
     data-bs-target="#menubar"
     aria-controls="menubar"
@@ -48,7 +46,11 @@
     #toggleButton
     (click)="toggleButtonText(toggleButton)"
   >
-    <span *ngIf="displayButtonText"> Encolher Menu </span>
-    <img src="assets/images/toggle.svg" width="48px" height="48px" alt="" />
+    <img
+      src="assets/images/toggle.svg"
+      width="48px"
+      height="48px"
+      alt="esconder menubar"
+    />
   </button>
 </nav>
