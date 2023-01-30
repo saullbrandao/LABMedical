@@ -28,6 +28,11 @@ export class LoginComponent {
       const password = this.form.get('password')?.value;
 
       this.authService.login(email, password);
+    } else {
+      Object.keys(this.form.controls).forEach((field) => {
+        const control = this.form.get(field);
+        control?.markAllAsTouched();
+      });
     }
   }
 

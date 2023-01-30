@@ -56,6 +56,11 @@ export class RegisterComponent {
             'Erro ao cadastrar novo usuário. Tente novamente.'
           ),
       });
+    } else {
+      Object.keys(this.registerForm.controls).forEach((field) => {
+        const control = this.registerForm.get(field);
+        control?.markAllAsTouched();
+      });
     }
   }
 
