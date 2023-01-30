@@ -9,19 +9,23 @@ const routes: Routes = [
   {
     path: 'novo',
     component: PatientsFormComponent,
+    title: 'Cadastro de Paciente',
   },
   {
     path: '',
     component: MedicalRecordsComponent,
+    title: 'Lista de Prontuários',
   },
   {
     path: ':id',
     component: PatientComponent,
+    title: 'Prontuário de Paciente',
   },
   {
     path: 'editar/:id',
     component: PatientsFormComponent,
     resolve: { patient: PacientResolver },
+    title: 'Edição de Paciente',
   },
 ];
 

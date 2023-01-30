@@ -7,11 +7,13 @@ const routes: Routes = [
   {
     path: 'novo',
     component: ExamsFormComponent,
+    title: 'Cadastro de Exame',
   },
   {
     path: 'editar/:id',
     component: ExamsFormComponent,
     resolve: { exam: ExamResolver },
+    title: 'Edição de Exame',
   },
   {
     path: '',
