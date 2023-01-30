@@ -12,6 +12,7 @@ const routes: Routes = [
       import('./views/patients/patients.module').then((m) => m.PatientsModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    title: 'Pacientes',
   },
   {
     path: 'consultas',
@@ -21,6 +22,7 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    title: 'Consultas',
   },
   {
     path: 'exames',
@@ -28,24 +30,34 @@ const routes: Routes = [
       import('./views/exams/exams.module').then((m) => m.ExamsModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    title: 'Exames',
   },
   {
     path: 'login',
     component: LoginComponent,
+    title: 'Login',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    title: 'Home',
   },
   {
     path: '',
+    redirectTo: 'home',
     pathMatch: 'full',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
   },
+
   {
     path: '404',
     component: PageNotFoundComponent,
+    title: '404',
   },
   {
     path: '**',
     component: PageNotFoundComponent,
+    title: '404',
   },
 ];
 

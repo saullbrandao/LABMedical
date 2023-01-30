@@ -14,6 +14,8 @@ import { TokenInterceptor } from './utils/token.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { HttpErrorInterceptor } from './utils/http-error.interceptor';
+import { CustomPageTitle } from './utils/custom-page-title';
+import { TitleStrategy } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { HttpErrorInterceptor } from './utils/http-error.interceptor';
     ReactiveFormsModule,
   ],
   providers: [
+    { provide: TitleStrategy, useClass: CustomPageTitle },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,

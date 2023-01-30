@@ -7,11 +7,13 @@ const routes: Routes = [
   {
     path: 'novo',
     component: AppointmentsFormComponent,
+    title: 'Cadastro de Consulta',
   },
   {
     path: 'editar/:id',
     component: AppointmentsFormComponent,
     resolve: { appointment: AppointmentResolver },
+    title: 'Edição de Consulta',
   },
   {
     path: '',
