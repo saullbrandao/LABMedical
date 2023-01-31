@@ -6,22 +6,7 @@
     (ngSubmit)="onSubmit()"
     class="px-4 py-3 shadow rounded-3"
   >
-    <div class="d-flex justify-content-between mb-3">
-      <h3 class="fw-bold">Identificação</h3>
-      <div class="d-flex gap-2">
-        <button
-          class="btn btn-outline-danger px-5 rounded-0"
-          type="button"
-          *ngIf="router.isActive('/pacientes/editar', false)"
-          (click)="onDelete()"
-        >
-          Deletar
-        </button>
-        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
-          Salvar
-        </button>
-      </div>
-    </div>
+    <h5 class="fw-bold">Identificação</h5>
 
     <div class="row mb-3">
       <div class="col-xl-6">
@@ -342,6 +327,21 @@
             formControlName="referencia"
           />
         </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+      <div class="d-flex gap-2">
+        <button
+          class="btn btn-outline-danger px-5 rounded-0"
+          type="button"
+          *ngIf="router.isActive('/pacientes/editar', false)"
+          (click)="onDelete()"
+        >
+          Deletar
+        </button>
+        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+          Salvar
+        </button>
       </div>
     </div>
   </form>
