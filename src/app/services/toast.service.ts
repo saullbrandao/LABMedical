@@ -7,15 +7,15 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class ToastService {
   constructor(private toast: HotToastService) {}
 
-  success(message: string) {
-    this.toast.success(message, { dismissible: true });
+  success(message: string, id?: string) {
+    this.toast.success(message, { dismissible: true, id });
   }
 
-  error(message: string) {
-    this.toast.error(message, { dismissible: true });
+  error(message: string, id?: string) {
+    this.toast.error(message, { dismissible: true, id });
   }
 
-  info(message: string) {
-    this.toast.info(message, { dismissible: true });
+  info(message: string, id?: string) {
+    this.toast.info(message, { dismissible: true, id });
   }
 }

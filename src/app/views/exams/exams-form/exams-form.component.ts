@@ -94,17 +94,11 @@ export class ExamsFormComponent implements OnInit, OnDestroy {
     const successMsg = this.form.value.id
       ? 'Exame atualizado com sucesso!'
       : 'Exame cadastrado com sucesso!';
-    const errorMsg = this.form.value.id
-      ? 'Erro ao atualizar informações do exame, tente novamente.'
-      : 'Erro ao cadastrar exame, tente novamente.';
 
     if (this.form.valid) {
-      this.examsService.save(this.form.value).subscribe({
-        next: () => {
-          this.toastService.success(successMsg);
-          this.router.navigate(['/pacientes', this.patient.id]);
-        },
-        error: () => this.toastService.error(errorMsg),
+      this.examsService.save(this.form.value).subscribe(() => {
+        this.toastService.success(successMsg);
+        this.router.navigate(['/pacientes', this.patient.id]);
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {
@@ -117,14 +111,9 @@ export class ExamsFormComponent implements OnInit, OnDestroy {
   onDelete() {
     const id = this.form.get('id')?.value;
 
-    this.examsService.delete(id).subscribe({
-      next: () => {
-        this.toastService.success('Exame deletado com sucesso!');
-        this.router.navigate(['/pacientes', this.patient.id]);
-      },
-      error: () => {
-        this.toastService.error('Erro ao deletar exame. Tente novamente.');
-      },
+    this.examsService.delete(id).subscribe(() => {
+      this.toastService.success('Exame deletado com sucesso!');
+      this.router.navigate(['/pacientes', this.patient.id]);
     });
   }
 

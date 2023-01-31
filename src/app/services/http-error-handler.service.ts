@@ -7,7 +7,7 @@ import { ToastService } from './toast.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ErrorHandlerService {
+export class HttpErrorHandlerService {
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -15,7 +15,11 @@ export class ErrorHandlerService {
   ) {}
 
   public handleError = (error: HttpErrorResponse) => {
+    console.log(error);
     switch (error.status) {
+      case 400:
+        this.handle400Error(error);
+        break;
       case 401:
         this.handle401Error();
         break;
@@ -24,11 +28,28 @@ export class ErrorHandlerService {
         break;
       default:
         this.handleUnknownError();
+        break;
+    }
+  };
+
+  private handle400Error = (error: HttpErrorResponse) => {
+    if (error.url?.includes('/login')) {
+      this.toastService.error('Email ou senha inválida', 'bad-credentials');
+    }
+
+    if (error.error === 'Email already exists') {
+      this.toastService.error(
+        'Erro ao cadastrar novo usuário. Email já utilizado.',
+        'register-error'
+      );
     }
   };
 
   private handle401Error = () => {
-    this.toastService.error('Sessão expirada. Por favor logue novamente.');
+    this.toastService.error(
+      'Sessão expirada. Por favor logue novamente.',
+      'session-expired'
+    );
     this.authService.logout();
   };
 
@@ -37,7 +58,9 @@ export class ErrorHandlerService {
   };
 
   private handleUnknownError() {
-    this.toastService.error('Ocorreu um erro. Tente novamente mais tarde.');
-    this.router.navigate(['/']);
+    this.toastService.error(
+      'Ocorreu um erro. Tente novamente mais tarde.',
+      'unkown-error'
+    );
   }
 }

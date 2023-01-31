@@ -6,11 +6,11 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { catchError, EMPTY, Observable } from 'rxjs';
-import { ErrorHandlerService } from '../services/error-handler.service';
+import { HttpErrorHandlerService } from '../services/http-error-handler.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private errorHandlerService: ErrorHandlerService) {}
+  constructor(private httpErrorHandlerService: HttpErrorHandlerService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -18,7 +18,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
-        this.errorHandlerService.handleError(error);
+        this.httpErrorHandlerService.handleError(error);
 
         return EMPTY;
       })

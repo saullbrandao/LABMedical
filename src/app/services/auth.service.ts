@@ -32,13 +32,9 @@ export class AuthService {
   login(email: string, password: string) {
     this.http
       .post<Token>(`${this.API_URL}/login`, { email, password })
-      .subscribe({
-        next: (res) => {
-          localStorage.setItem('token', JSON.stringify(res));
-          this.router.navigate(['/']);
-        },
-        error: () =>
-          this.toastService.error('Erro ao fazer login. Tente novamente.'),
+      .subscribe((res) => {
+        localStorage.setItem('token', JSON.stringify(res));
+        this.router.navigate(['/']);
       });
   }
 
