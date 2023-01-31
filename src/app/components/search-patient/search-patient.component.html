@@ -1,0 +1,34 @@
+<div class="mb-4" *ngIf="shouldDisplay()">
+  <h2>Encontre o paciente</h2>
+  <div class="input-group mb-3">
+    <img
+      class="input-group-text border-secondary"
+      src="assets/images/search.svg"
+    />
+    <input
+      type="text"
+      class="form-control border-secondary bg-light"
+      placeholder="Digite o nome do paciente"
+      #searchInput
+      (keyup.enter)="searchPatient(searchInput.value)"
+    />
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="searchPatient(searchInput.value)"
+    >
+      Buscar
+    </button>
+  </div>
+  <div class="list-group">
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      [ngClass]="{ active: selectedPatientId === patient.id }"
+      *ngFor="let patient of patients"
+      (click)="selectPatient(patient)"
+    >
+      {{ patient.nome }}
+    </button>
+  </div>
+</div>
