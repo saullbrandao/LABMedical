@@ -1,5 +1,5 @@
 <nav
-  class="position-sticky top-0 d-flex flex-column align-items-center justify-content-center min-vh-100 bg-primary text-white"
+  class="position-sticky top-0 d-flex flex-column align-items-center justify-content-end min-vh-100 bg-primary text-white"
   *ngIf="shouldDisplay()"
 >
   <div class="collapse navbar-collapse show" id="menubar" #menubar>
@@ -44,7 +44,6 @@
     aria-controls="menubar"
     aria-expanded="true"
     #toggleButton
-    (click)="toggleButtonText(toggleButton)"
   >
     <img
       src="assets/images/toggle.svg"
