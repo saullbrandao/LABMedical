@@ -94,17 +94,11 @@ export class PatientsFormComponent implements OnInit {
     const successMsg = this.form.value.id
       ? 'Paciente atualizado com sucesso!'
       : 'Paciente cadastrado com sucesso!';
-    const errorMsg = this.form.value.id
-      ? 'Erro ao atualizar informações do paciente, tente novamente.'
-      : 'Erro ao cadastrar paciente, tente novamente.';
 
     if (this.form.valid) {
-      this.patientsService.save(this.form.value).subscribe({
-        next: (patient) => {
-          this.toastService.success(successMsg);
-          this.router.navigate(['/pacientes', patient.id]);
-        },
-        error: () => this.toastService.error(errorMsg),
+      this.patientsService.save(this.form.value).subscribe((patient) => {
+        this.toastService.success(successMsg);
+        this.router.navigate(['/pacientes', patient.id]);
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {
@@ -115,14 +109,9 @@ export class PatientsFormComponent implements OnInit {
   }
 
   onDelete() {
-    this.patientsService.delete(this.patientId).subscribe({
-      next: () => {
-        this.toastService.success('Paciente deletado com sucesso!');
-        this.router.navigate(['/']);
-      },
-      error: (error) => {
-        this.toastService.error(error.message);
-      },
+    this.patientsService.delete(this.patientId).subscribe(() => {
+      this.toastService.success('Paciente deletado com sucesso!');
+      this.router.navigate(['/']);
     });
   }
 

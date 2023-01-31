@@ -85,17 +85,11 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
     const successMsg = this.form.value.id
       ? 'Consulta atualizada com sucesso!'
       : 'Consulta cadastrada com sucesso!';
-    const errorMsg = this.form.value.id
-      ? 'Erro ao atualizar informações da consulta, tente novamente.'
-      : 'Erro ao cadastrar consulta, tente novamente.';
 
     if (this.form.valid) {
-      this.appointmentsService.save(this.form.value).subscribe({
-        next: () => {
-          this.toastService.success(successMsg);
-          this.router.navigate(['/pacientes', this.patient.id]);
-        },
-        error: () => this.toastService.error(errorMsg),
+      this.appointmentsService.save(this.form.value).subscribe(() => {
+        this.toastService.success(successMsg);
+        this.router.navigate(['/pacientes', this.patient.id]);
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {
@@ -112,9 +106,6 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
       next: () => {
         this.toastService.success('Consulta deletada com sucesso!');
         this.router.navigate(['/pacientes', this.patient.id]);
-      },
-      error: () => {
-        this.toastService.error('Erro ao deletar consulta. Tente novamente.');
       },
     });
   }

@@ -44,17 +44,11 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe({
-        next: (res) => {
-          this.toastService.success('Conta criada com sucesso!');
-          localStorage.setItem('token', JSON.stringify(res));
-          hideModal(this.registerModal.nativeElement);
-          this.router.navigate(['/']);
-        },
-        error: () =>
-          this.toastService.error(
-            'Erro ao cadastrar novo usuário. Tente novamente.'
-          ),
+      this.authService.register(this.registerForm.value).subscribe((res) => {
+        this.toastService.success('Conta criada com sucesso!');
+        localStorage.setItem('token', JSON.stringify(res));
+        hideModal(this.registerModal.nativeElement);
+        this.router.navigate(['/']);
       });
     } else {
       Object.keys(this.registerForm.controls).forEach((field) => {
