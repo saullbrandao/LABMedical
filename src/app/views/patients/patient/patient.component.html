@@ -35,14 +35,14 @@
             routerLink="/consultas/editar/{{ appointment.id }}"
           >
             <img src="assets/images/edit.png" alt="editar" />
-            EDITAR
+            <span class="d-none d-sm-block"> EDITAR</span>
           </button>
         </div>
 
         <div class="">
-          <div class="d-flex gap-2">
-            <p class="fw-semibold">Data: {{ appointment.data }}</p>
-            <p class="fw-semibold">Hora: {{ appointment.horario }}</p>
+          <div class="row">
+            <p class="fw-semibold col-md-2">Data: {{ appointment.data }}</p>
+            <p class="fw-semibold col-md-2">Hora: {{ appointment.horario }}</p>
           </div>
           <p>
             Descrição do Problema:
@@ -72,14 +72,16 @@
 
         <div>
           <div>
-            <div class="d-flex gap-4">
-              <p class="fw-semibold">Data: {{ exam.data }}</p>
-              <p class="fw-semibold">Hora: {{ exam.horario }}</p>
-              <p class="fw-semibold">Laboratório: {{ exam.laboratorio }}</p>
+            <div class="row">
+              <p class="fw-semibold col-md-4">Data: {{ exam.data }}</p>
+              <p class="fw-semibold col-md-4">Hora: {{ exam.horario }}</p>
+              <p class="fw-semibold col-md-4">
+                Laboratório: {{ exam.laboratorio }}
+              </p>
             </div>
 
-            <div class="d-flex gap-5 align-items-center">
-              <div>
+            <div class="row">
+              <div class="col-md-9">
                 <p>
                   Tipo:
                   {{ exam.tipo }}
@@ -90,8 +92,18 @@
                 </p>
               </div>
 
-              <a *ngIf="exam.url" [href]="exam.url" target="_blank">
-                <img src="assets/images/attachment.png" alt="" />
+              <a
+                *ngIf="exam.url"
+                [href]="exam.url"
+                target="_blank"
+                class="col-md-3"
+              >
+                <img
+                  src="assets/images/attachment.png"
+                  width="72px"
+                  height="72px"
+                  alt=""
+                />
               </a>
             </div>
           </div>
