@@ -170,7 +170,7 @@
     {
       "id": 2,
       "pacienteId": 1,
-      "motivo": "1231231312",
+      "motivo": "ferfgergert",
       "data": "22/01/2013",
       "horario": "09:28:17",
       "descricao": "gre grtghrt rhhrthrhrhrhrth ",
@@ -186,6 +186,26 @@
       "medicacao": "hthrth trthrthrth h",
       "dosagemEPrecaucoes": "htrhrthrhrhrthrthrth",
       "id": 3
+    },
+    {
+      "id": 4,
+      "pacienteId": 5,
+      "motivo": "frfgergegergerger",
+      "data": "31/01/2023",
+      "horario": "09:07:09",
+      "descricao": "gregergergergergergergerg",
+      "medicacao": "",
+      "dosagemEPrecaucoes": "ergergergerggergergerg"
+    },
+    {
+      "id": 5,
+      "pacienteId": 1,
+      "motivo": "gergergegergergerge",
+      "data": "31/01/2023",
+      "horario": "09:40:11",
+      "descricao": "gergergergergergergerg",
+      "medicacao": "",
+      "dosagemEPrecaucoes": "egrrgergergergergergerg"
     }
   ],
   "exames": [

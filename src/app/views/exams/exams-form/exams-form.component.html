@@ -1,34 +1,16 @@
 <section class="p-4">
-  <h2>Encontre o paciente</h2>
-  <div class="input-group mb-3">
-    <img
-      class="input-group-text border-secondary"
-      src="assets/images/search.svg"
-    />
-    <input
-      type="text"
-      class="form-control border-secondary bg-light"
-      placeholder="Digite o nome do paciente"
-      #searchInput
-      (keyup.enter)="searchPatient(searchInput.value)"
-    />
-    <button
-      type="button"
-      class="btn btn-outline-secondary"
-      (click)="searchPatient(searchInput.value)"
-    >
-      Buscar
-    </button>
-  </div>
+  <labmedical-search-patient
+    (selectedPatient)="handlePatientSelection($event)"
+  ></labmedical-search-patient>
 
   <form
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
     class="px-4 py-3 shadow rounded-3 bg-white"
-    *ngIf="patient.nome"
+    *ngIf="selectedPatient.nome"
   >
     <div class="d-flex justify-content-between mb-3">
-      <h3 class="fw-bold">Exame de {{ patient.nome }}</h3>
+      <h3 class="fw-bold">Exame de {{ selectedPatient.nome }}</h3>
       <div class="d-flex gap-2">
         <button
           class="btn btn-outline-danger px-5 rounded-0"

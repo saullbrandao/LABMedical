@@ -16,8 +16,7 @@ import { AppointmentsService } from '../appointments.service';
 })
 export class AppointmentsFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
-  patient: Patient = {} as Patient;
-  patientsSearchSubscription: Subscription = new Subscription();
+  selectedPatient: Patient = {} as Patient;
   patientsSubscription: Subscription = new Subscription();
 
   constructor(
@@ -68,7 +67,7 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
     if (appointment?.id) {
       this.patientsSubscription = this.patientsService
         .getById(appointment.pacienteId)
-        .subscribe((data) => (this.patient = data));
+        .subscribe((data) => (this.selectedPatient = data));
 
       this.form.patchValue({
         ...appointment,
@@ -77,7 +76,6 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.patientsSearchSubscription.unsubscribe();
     this.patientsSubscription.unsubscribe();
   }
 
@@ -89,7 +87,7 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.appointmentsService.save(this.form.value).subscribe(() => {
         this.toastService.success(successMsg);
-        this.router.navigate(['/pacientes', this.patient.id]);
+        this.router.navigate(['/pacientes', this.selectedPatient.id]);
       });
     } else {
       Object.keys(this.form.controls).forEach((field) => {
@@ -105,20 +103,17 @@ export class AppointmentsFormComponent implements OnInit, OnDestroy {
     this.appointmentsService.delete(id).subscribe({
       next: () => {
         this.toastService.success('Consulta deletada com sucesso!');
-        this.router.navigate(['/pacientes', this.patient.id]);
+        this.router.navigate(['/pacientes', this.selectedPatient.id]);
       },
     });
   }
 
-  searchPatient(term: string) {
-    this.patientsSearchSubscription = this.patientsService
-      .getByName(term)
-      .subscribe((data) => {
-        this.patient = data[0];
-        this.form.patchValue({
-          pacienteId: this.patient.id,
-        });
-      });
+  handlePatientSelection(patient: Patient) {
+    this.selectedPatient = patient;
+
+    this.form.patchValue({
+      pacienteId: patient.id,
+    });
   }
 
   isInvalid(input: string) {
