@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,12 +7,12 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent {
+export class MenuComponent implements AfterViewInit {
   readonly menuCategories = [
     {
       title: 'geral',
       items: [
-        { title: 'início', icon: 'list', page: '/' },
+        { title: 'início', icon: 'list', page: '/home' },
         {
           title: 'sair',
           icon: 'logout',
@@ -44,9 +44,15 @@ export class MenuComponent {
     },
   ];
 
-  displayButtonText: boolean = true;
+  @ViewChild('toggleButton') toggleButton!: ElementRef<HTMLButtonElement>;
 
   constructor(private router: Router, private authService: AuthService) {}
+
+  ngAfterViewInit(): void {
+    if (window.matchMedia('screen and (max-width: 768px)').matches) {
+      this.toggleButton.nativeElement.click();
+    }
+  }
 
   shouldDisplay() {
     return !this.router.isActive('/login', {
@@ -55,10 +61,6 @@ export class MenuComponent {
       fragment: 'ignored',
       matrixParams: 'ignored',
     });
-  }
-
-  toggleButtonText(toggleButton: HTMLElement) {
-    this.displayButtonText = !toggleButton.classList.contains('collapsed');
   }
 
   logout() {
