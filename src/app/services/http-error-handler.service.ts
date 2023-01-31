@@ -15,7 +15,6 @@ export class HttpErrorHandlerService {
   ) {}
 
   public handleError = (error: HttpErrorResponse) => {
-    console.log(error);
     switch (error.status) {
       case 400:
         this.handle400Error(error);
