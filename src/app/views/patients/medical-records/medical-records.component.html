@@ -1,9 +1,9 @@
 <div class="p-4">
   <section>
-    <h2>Utilize a barra de pesquisa para buscar</h2>
+    <h2>Filtrar pacientes</h2>
     <div class="input-group mb-3">
       <img
-        class="input-group-text border-secondary"
+        class="d-none d-sm-block input-group-text border-secondary"
         src="assets/images/search.svg"
       />
       <input
@@ -21,33 +21,35 @@
         Buscar
       </button>
     </div>
-    <table
-      class="table table-hover align-middle text-center"
-      style="border-collapse: separate; border-spacing: 0 2rem"
-    >
-      <thead>
-        <tr>
-          <th class="fs-4" scope="col">Registro</th>
-          <th class="fs-4" scope="col">Nome do Paciente</th>
-          <th class="fs-4" scope="col">Convênio</th>
-          <th class="fs-4" scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          class="rounded-3 shadow bg-white"
-          style="height: 5rem; cursor: pointer"
-          *ngFor="let patient of filteredPatients"
-          routerLink="{{ patient.id }}"
-        >
-          <td>{{ patient.id?.toString()?.padStart(10, "0") }}</td>
-          <td>{{ patient.nome }}</td>
-          <td>{{ patient.convenio?.nome || "Sem Plano" }}</td>
-          <td class="text-end">
-            <img src="assets/images/chevron.svg" />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table
+        class="table table-hover align-middle text-center"
+        style="border-collapse: separate; border-spacing: 0 2rem"
+      >
+        <thead>
+          <tr>
+            <th class="fs-5" scope="col">Registro</th>
+            <th class="fs-5" scope="col">Paciente</th>
+            <th class="fs-5" scope="col">Convênio</th>
+            <th class="fs-5" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="rounded-3 shadow bg-white"
+            style="cursor: pointer"
+            *ngFor="let patient of filteredPatients"
+            routerLink="{{ patient.id }}"
+          >
+            <td>{{ patient.id?.toString()?.padStart(10, "0") }}</td>
+            <td>{{ patient.nome }}</td>
+            <td>{{ patient.convenio?.nome || "Sem Plano" }}</td>
+            <td class="text-end">
+              <img src="assets/images/chevron.svg" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </div>
