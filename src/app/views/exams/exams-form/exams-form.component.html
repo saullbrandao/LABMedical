@@ -9,7 +9,7 @@
     class="px-4 py-3 shadow rounded-3 bg-white"
     *ngIf="selectedPatient.nome"
   >
-    <h5 class="fw-bold">Exame de {{ selectedPatient.nome }}</h5>
+    <h3 class="fw-bold">Exame de {{ selectedPatient.nome }}</h3>
     <div class="d-flex justify-content-end mb-3">
       <div class="d-flex gap-2">
         <button
@@ -28,7 +28,7 @@
 
     <div class="row mb-3">
       <div class="col-xl-8">
-        <label class="form-label fw-bold" for="nome">Nome do Exame</label>
+        <label class="form-label fw-bold" for="nome">Nome do Exame*</label>
         <input
           class="form-control"
           [class.is-invalid]="isInvalid('nome')"
@@ -42,7 +42,7 @@
         >
       </div>
       <div class="col-xl-2">
-        <label class="form-label fw-bold" for="data">Data da Consulta</label>
+        <label class="form-label fw-bold" for="data">Data*</label>
         <input
           class="form-control"
           [class.is-invalid]="isInvalid('data')"
@@ -57,7 +57,7 @@
         <span class="invalid-feedback">Inválido</span>
       </div>
       <div class="col-xl-2">
-        <label class="form-label fw-bold" for="horario">Hora da Consulta</label>
+        <label class="form-label fw-bold" for="horario">Horário*</label>
         <input
           class="form-control"
           [class.is-invalid]="isInvalid('horario')"
@@ -74,7 +74,7 @@
     </div>
     <div class="row mb-3">
       <div class="col">
-        <label class="form-label fw-bold" for="tipo">Tipo do Exame</label>
+        <label class="form-label fw-bold" for="tipo">Tipo do Exame*</label>
         <input
           class="form-control"
           id="tipo"
@@ -88,7 +88,7 @@
         >
       </div>
       <div class="col">
-        <label class="form-label fw-bold" for="laboratorio">Laboratório</label>
+        <label class="form-label fw-bold" for="laboratorio">Laboratório*</label>
         <input
           class="form-control"
           id="laboratorio"
@@ -120,7 +120,7 @@
     <div class="row mb-3">
       <div class="col">
         <label class="form-label fw-bold" for="resultado"
-          >Resultado do Exame</label
+          >Resultado do Exame*</label
         >
         <textarea
           class="form-control"

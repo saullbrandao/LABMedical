@@ -14,7 +14,7 @@
                 src="assets/images/{{ stat.value.icon }}.png"
                 width="84"
                 height="84"
-                alt=""
+                [alt]="stat.value.imageAlt"
               />
               <span class="fs-1 fw-bold">{{ stat.value.quantity }}</span>
             </div>
@@ -31,6 +31,7 @@
       <img
         class="input-group-text border-secondary"
         src="assets/images/search.svg"
+        alt="lupa"
       />
       <input
         type="text"
@@ -57,9 +58,9 @@
             src="assets/images/person-circle-outline.svg"
             width="98"
             height="98"
-            alt=""
+            alt="ícone de usuário"
           />
-          <h5 class="fw-bold">{{ patient.nome }}</h5>
+          <span class="fs-5 fw-bold">{{ patient.nome }}</span>
           <span>{{ patient.dataNascimento | age }} Anos</span>
           <span>{{ patient.telefone }}</span>
           <span
