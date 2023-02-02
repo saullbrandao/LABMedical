@@ -26,7 +26,7 @@ export class RegisterComponent {
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(9)]],
         name: [
           '',
           [
@@ -44,7 +44,9 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe((res) => {
+      const { confirmPassword, ...formData } = this.registerForm.value;
+
+      this.authService.register(formData).subscribe((res) => {
         this.toastService.success('Conta criada com sucesso!');
         localStorage.setItem('token', JSON.stringify(res));
         hideModal(this.registerModal.nativeElement);
