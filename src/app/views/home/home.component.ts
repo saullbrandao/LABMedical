@@ -15,14 +15,17 @@ export class HomeComponent implements OnInit {
     pacientes: {
       quantity: 0,
       icon: 'patients',
+      imageAlt: 'pacientes',
     },
     consultas: {
       quantity: 0,
       icon: 'medical-appointment',
+      imageAlt: 'calendário de consulta',
     },
     exames: {
       quantity: 0,
       icon: 'medical-report',
+      imageAlt: 'prancheta de exames',
     },
   };
 

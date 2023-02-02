@@ -6,11 +6,11 @@
     (ngSubmit)="onSubmit()"
     class="px-4 py-3 shadow rounded-3"
   >
-    <h5 class="fw-bold">Identificação</h5>
+    <h3 class="fw-bold">Identificação</h3>
 
     <div class="row mb-3">
       <div class="col-xl-6">
-        <label class="form-label fw-bold" for="nome">Nome Completo</label>
+        <label class="form-label fw-bold" for="nome">Nome Completo*</label>
         <input
           class="form-control"
           [class.is-invalid]="isInvalid('nome')"
@@ -23,7 +23,7 @@
         >
       </div>
       <div class="col-xl-4">
-        <label class="form-label fw-bold" for="genero">Gênero</label>
+        <label class="form-label fw-bold" for="genero">Gênero*</label>
         <select
           class="form-select"
           id="genero"
@@ -37,7 +37,7 @@
       </div>
       <div class="col-xl-2">
         <label class="form-label fw-bold" for="dataNascimento"
-          >Data Nascimento</label
+          >Data Nascimento*</label
         >
         <input
           class="form-control"
@@ -55,9 +55,10 @@
     </div>
     <div class="row mb-3">
       <div class="col-lg-3">
-        <label class="form-label fw-bold" for="cpf">CPF</label>
+        <label class="form-label fw-bold" for="cpf">CPF*</label>
         <input
           mask="000.000.000-00"
+          placeholder="000.000.000-00"
           [dropSpecialCharacters]="false"
           class="form-control"
           type="text"
@@ -68,7 +69,7 @@
         <span class="invalid-feedback">Digite um cpf válido</span>
       </div>
       <div class="col-lg-3">
-        <label class="form-label fw-bold" for="rg">RG</label>
+        <label class="form-label fw-bold" for="rg">RG*</label>
         <input
           class="form-control"
           type="text"
@@ -81,7 +82,7 @@
       </div>
       <div class="col-lg-3">
         <label class="form-label fw-bold" for="orgaoExpedidor"
-          >Órgao Expedidor RG</label
+          >Órgao Expedidor RG*</label
         >
         <input
           class="form-control"
@@ -93,7 +94,9 @@
         <span class="invalid-feedback">Informe o Órgão Expedidor do RG</span>
       </div>
       <div class="col-lg-3">
-        <label class="form-label fw-bold" for="estadoCivil">Estado Civil</label>
+        <label class="form-label fw-bold" for="estadoCivil"
+          >Estado Civil*</label
+        >
         <select
           class="form-select"
           id="estadoCivil"
@@ -110,7 +113,7 @@
     </div>
     <div class="row mb-3">
       <div class="col-lg-3">
-        <label class="form-label fw-bold" for="telefone">Telefone</label>
+        <label class="form-label fw-bold" for="telefone">Telefone*</label>
         <input
           class="form-control"
           type="text"
@@ -118,6 +121,7 @@
           formControlName="telefone"
           mask="(00) 0 0000-0000"
           [dropSpecialCharacters]="false"
+          placeholder="(00) 0 0000-0000"
           [class.is-invalid]="isInvalid('telefone')"
         />
         <span class="invalid-feedback">Digite um telefone válido</span>
@@ -135,20 +139,21 @@
       </div>
       <div class="col-lg-3">
         <label class="form-label fw-bold" for="naturalidade"
-          >Naturalidade</label
+          >Naturalidade*</label
         >
         <input
           class="form-control"
           type="text"
           id="naturalidade"
           formControlName="naturalidade"
+          placeholder="São Paulo - SP"
           [class.is-invalid]="isInvalid('naturalidade')"
         />
         <span class="invalid-feedback">Campo obrigatório</span>
       </div>
       <div class="col-lg-3">
         <label class="form-label fw-bold" for="contatoEmergencia"
-          >Contato de Emergência</label
+          >Contato de Emergência*</label
         >
         <input
           class="form-control"
@@ -157,6 +162,7 @@
           formControlName="contatoEmergencia"
           mask="(00) 0 0000-0000"
           [dropSpecialCharacters]="false"
+          placeholder="(00) 0 0000-0000"
           [class.is-invalid]="isInvalid('contatoEmergencia')"
         />
         <span class="invalid-feedback">Digite um telefone válido</span>
@@ -232,7 +238,7 @@
     <div formGroupName="endereco">
       <div class="row mb-3">
         <div class="col-lg-4">
-          <label class="form-label fw-bold" for="cep">CEP</label>
+          <label class="form-label fw-bold" for="cep">CEP*</label>
           <input
             class="form-control"
             type="text"
@@ -245,7 +251,7 @@
           <span class="invalid-feedback">Digite um CEP válido</span>
         </div>
         <div class="col-lg-6">
-          <label class="form-label fw-bold" for="cidade">Cidade</label>
+          <label class="form-label fw-bold" for="cidade">Cidade*</label>
           <input
             class="form-control"
             type="text"
@@ -256,7 +262,7 @@
           <span class="invalid-feedback">Campo Obrigatório</span>
         </div>
         <div class="col-lg-2">
-          <label class="form-label fw-bold" for="estado">Estado</label>
+          <label class="form-label fw-bold" for="estado">Estado*</label>
           <input
             class="form-control"
             type="text"
@@ -270,7 +276,7 @@
 
       <div class="row mb-3">
         <div class="col-lg-10">
-          <label class="form-label fw-bold" for="logradouro">Logradouro</label>
+          <label class="form-label fw-bold" for="logradouro">Logradouro*</label>
           <input
             class="form-control"
             type="text"
@@ -281,7 +287,7 @@
           <span class="invalid-feedback">Campo Obrigatório</span>
         </div>
         <div class="col-lg-2">
-          <label class="form-label fw-bold" for="numero">Número</label>
+          <label class="form-label fw-bold" for="numero">Número*</label>
           <input
             class="form-control"
             type="number"
@@ -305,8 +311,8 @@
             formControlName="complemento"
           />
         </div>
-        <div class="col-lg-6">
-          <label class="form-label fw-bold" for="bairro">Bairro</label>
+        <div class="col-lg-4">
+          <label class="form-label fw-bold" for="bairro">Bairro*</label>
           <input
             class="form-control"
             type="text"
@@ -316,7 +322,7 @@
           />
           <span class="invalid-feedback">Campo Obrigatório</span>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-4">
           <label class="form-label fw-bold" for="referencia"
             >Ponto de Referência</label
           >
