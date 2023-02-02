@@ -232,12 +232,5 @@
       "resultado": "gergerger gergergergerergergegergergerge"
     }
   ],
-  "users": [
-    {
-      "email": "test@test",
-      "password": "$2a$10$ImLhcBv0899moln/SYr21OMy8V/NWF72pzKpdFmfu0fS4KBBwHjIe",
-      "name": "Test Name",
-      "id": 1
-    }
-  ]
+  "users": []
 }
