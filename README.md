@@ -1,27 +1,59 @@
-# LABMedical
+<h1 align="center">
+  LABMedical 
+</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+<div align="center">
+  <a href="https://www.twitter.com/saullbrandao/">
+    <img alt="Saull Brandão" src="https://img.shields.io/badge/-saullbrandao-1DA1F2?style=flat&logo=Twitter&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/saullbrandao/">
+    <img alt="Saull Brandão" src="https://img.shields.io/badge/-saullbrandao-0A66C2?style=flat&logo=Linkedin&logoColor=white" />
+  </a>
+</div>
 
-## Development server
+<h2 align="center">
+  Segundo Projeto do Módulo 1 do Devin[Philips]
+</h2>
+<br />
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# 📑 Tabela de Conteúdo
 
-## Code scaffolding
+- [Sobre o projeto](#-sobre-o-projeto)
+- [Tecnologias](#-tecnologias)
+- [Iniciando](#-iniciando)
+  - [Requisitos](#requisitos)
+  - [Como rodar](#como-rodar)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# 📃 Sobre o projeto
 
-## Build
+![LABMedical](https://i.imgur.com/7mXZDtQ.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Sistema de gestão de inventário médico
+- Login usando email e senha
+- Menu lateral com navegação
+- Página inicial com estatísticas do sistema, listagem de pacientes e barra de pesquisa
+- Usuário pode cadastrar, editar ou deletar paciente, consulta ou exame
+- Página pra cada paciente com suas informações principais, consultas e exames cadastrados
 
-## Running unit tests
+# 💻 Tecnologias
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Angular](https://angular.io/)
+- [Bootstrap](https://getbootstrap.com/)
+- [JSON Server](https://github.com/typicode/json-server)
+- [JSON Server Auth](https://github.com/jeremyben/json-server-auth)
+- [Ngx Mask](https://jsdaddy.github.io/ngx-mask/)
+- [Ngx Spinner](https://napster2210.github.io/ngx-spinner/)
+- [Ngneat Hot Toast](https://ngneat.github.io/hot-toast/)
 
-## Running end-to-end tests
+# 🚀 Iniciando
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Requisitos
 
-## Further help
+- [Node.js](https://nodejs.org/en/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Como rodar
+
+- Clonar repositório e instalar os pacotes com `npm install`
+- `ng start` pra rodar o projeto
+- `npm run server` pra rodar o json-server junto com o json-server-auth e com um delay de 500ms
+- Acesso através do http://localhost:4200/
