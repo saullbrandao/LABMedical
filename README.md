@@ -34,6 +34,7 @@
 - Página inicial com estatísticas do sistema, listagem de pacientes e barra de pesquisa
 - Usuário pode cadastrar, editar ou deletar paciente, consulta ou exame
 - Página pra cada paciente com suas informações principais, consultas e exames cadastrados
+- Layout responsivo
 
 # 💻 Tecnologias
 
