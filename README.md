@@ -54,6 +54,6 @@
 ## Como rodar
 
 - Clonar repositório e instalar os pacotes com `npm install`
-- `ng start` pra rodar o projeto
+- `npm start` pra rodar o projeto
 - `npm run server` pra rodar o json-server junto com o json-server-auth e com um delay de 500ms
 - Acesso através do http://localhost:4200/
