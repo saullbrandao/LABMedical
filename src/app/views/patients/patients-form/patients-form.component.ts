@@ -109,9 +109,16 @@ export class PatientsFormComponent implements OnInit {
   }
 
   onDelete() {
-    this.patientsService.delete(this.patientId).subscribe(() => {
-      this.toastService.success('Paciente deletado com sucesso!');
-      this.router.navigate(['/']);
+    this.patientsService.delete(this.patientId).subscribe({
+      next: () => {
+        this.toastService.success('Paciente deletado com sucesso!');
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.toastService.error(
+          'Paciente tem consultas ou exames cadastrados!'
+        );
+      },
     });
   }
 

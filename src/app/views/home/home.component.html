@@ -38,7 +38,7 @@
         class="form-control border-secondary"
         placeholder="Digite o nome do paciente"
         #searchInput
-        (keyup.enter)="searchPatients(searchInput.value)"
+        (keyup)="searchPatients(searchInput.value)"
       />
       <button
         type="button"

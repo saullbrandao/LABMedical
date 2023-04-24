@@ -45,6 +45,8 @@ export class PacientResolver implements Resolve<Patient> {
         bairro: '',
         referencia: '',
       },
+      consultas: [],
+      exames: [],
     });
   }
 }

@@ -20,7 +20,10 @@
 
   <section>
     <h3>Consultas</h3>
-    <ul class="d-flex flex-column gap-4">
+    <ul
+      *ngIf="patient.consultas.length > 0; else noAppointments"
+      class="d-flex flex-column gap-4"
+    >
       <li
         class="card bg-white p-3"
         *ngFor="let appointment of patient.consultas"
@@ -56,7 +59,10 @@
   </section>
   <section>
     <h3>Exames</h3>
-    <ul class="d-flex flex-column gap-4">
+    <ul
+      *ngIf="patient.exames.length > 0; else noExams"
+      class="d-flex flex-column gap-4"
+    >
       <li class="card bg-white p-3" *ngFor="let exam of patient.exames">
         <div class="d-flex justify-content-between">
           <h4 class="card-title d-flex gap-4">Nome: {{ exam.nome }}</h4>
@@ -112,3 +118,10 @@
     </ul>
   </section>
 </div>
+
+<ng-template #noAppointments>
+  <p>Nenhuma consulta cadastrada para esse paciente.</p>
+</ng-template>
+<ng-template #noExams>
+  <p>Nenhum exame cadastrado para esse paciente.</p>
+</ng-template>
