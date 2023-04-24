@@ -31,6 +31,6 @@ export type Patient = {
     bairro: string;
     referencia?: string;
   };
-  consultas?: Appointment[];
-  exames?: Exam[];
+  consultas: Appointment[];
+  exames: Exam[];
 };
